@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>복소사 동아리</title>
+<meta name="description" content="복분자, 소주, 사이다를 맛있게 먹기 위한 동아리를 빙자한 3:3 랜덤 미팅">
+<meta property="og:title" content="복소사 동아리">
+<meta property="og:description" content="복분자, 소주, 사이다를 맛있게 먹기 위한 동아리를 빙자한 3:3 랜덤 미팅">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍶</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF1E6; --panel:#FFFFFF; --text:#26160E; --muted:#7A6255; --line:#F0CDB6;
+  --tarp:#FF6A13; --stripe:#FFF8F0; --soju:#2F8F4E; --soju-ink:#FFFFFF;
+  --bok:#8E1540; --sojuliq:#D7F0DD; --cider:#A9E2F5; --glass:#B9CFC0;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#15182E;--panel:#212646;--text:#FFF6D8;--muted:#A9AECB;--line:#343A66;--stripe:#F3E6D2;--glass:#5D7A6A;--sojuliq:#C4E6CD}
+}
+:root[data-theme="dark"]{--bg:#15182E;--panel:#212646;--text:#FFF6D8;--muted:#A9AECB;--line:#343A66;--stripe:#F3E6D2;--glass:#5D7A6A;--sojuliq:#C4E6CD}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font-family:'Gowun Dodum',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.6;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible,input:focus-visible{outline:3px solid var(--tarp);outline-offset:2px}
+
+/* 천막과 전구 */
+.awning{height:34px;background:repeating-linear-gradient(90deg,var(--tarp) 0 30px,var(--stripe) 30px 60px);position:relative}
+.awning::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;
+  background:radial-gradient(circle at 15px 0,var(--tarp) 14px,transparent 15px) 0 0/60px 14px repeat-x,
+             radial-gradient(circle at 45px 0,var(--stripe) 14px,transparent 15px) 0 0/60px 14px repeat-x}
+.lights{max-width:480px;margin:22px auto 0;padding:0 14px;display:flex;justify-content:space-between;position:relative;height:14px}
+.lights::before{content:"";position:absolute;left:14px;right:14px;top:2px;border-top:1px solid var(--muted);opacity:.4}
+.lights span{position:relative;width:8px;height:11px;border-radius:50% 50% 45% 45%;background:#FFD66B;box-shadow:0 0 10px 3px #FFD66B77}
+.bar{max-width:480px;margin:0 auto;padding:10px 18px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{background:none;border:0;font-family:'Black Han Sans',sans-serif;font-size:18px;padding:4px 0}
+.coin{font-family:'Black Han Sans',sans-serif;background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-size:15px}
+.wrap{max-width:480px;margin:0 auto;padding:16px 18px 40px}
+.wrap.enter{animation:enter .35s ease both}
+
+/* 글자 */
+.title{font-family:'Black Han Sans',sans-serif;font-size:64px;line-height:.95;letter-spacing:-1px;color:var(--tarp)}
+.h{font-family:'Black Han Sans',sans-serif;font-size:28px;line-height:1.2;margin-bottom:4px}
+.sub{color:var(--muted);margin-bottom:16px}
+.lede{margin-top:16px;color:var(--muted)}
+small{font-size:.78em;opacity:.8}
+.center{text-align:center}
+
+/* 버튼 */
+.stack{display:grid;gap:10px;margin-top:24px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px 14px;background:var(--soju);color:var(--soju-ink);font-family:'Black Han Sans',sans-serif;font-size:19px;box-shadow:0 4px 0 #1D5E32}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #1D5E32}
+.btn.ghost{background:var(--panel);color:var(--text);border:2px solid var(--line);box-shadow:none;font-size:16px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn small{font-family:'Gowun Dodum',sans-serif;margin-left:4px}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:14px;padding:8px}
+
+.hero{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:end;margin-top:10px}
+
+/* 병 */
+.bottle{width:92px;margin:0 auto;flex:none}
+.bottle .neck{width:30px;height:38px;margin:0 auto;border:3px solid var(--glass);border-bottom:0;border-radius:8px 8px 0 0;background:var(--soju);opacity:.9}
+.bottle .body{height:190px;border:3px solid var(--glass);border-radius:20px 20px 26px 26px;overflow:hidden;display:flex;flex-direction:column-reverse;background:color-mix(in srgb,var(--panel) 70%,transparent)}
+.bottle.sm{width:46px}.bottle.sm .neck{width:16px;height:16px;border-width:2px}.bottle.sm .body{height:84px;border-width:2px;border-radius:10px 10px 14px 14px}
+.bottle.wob{animation:wob .4s}
+.liq{width:100%;transition:height .35s ease}
+.lb{background:var(--bok)}
+.ls{background:var(--sojuliq)}
+.lc{background:var(--cider) radial-gradient(circle,#ffffffcc 2px,transparent 3px) 0 0/14px 16px}
+
+/* 카드 */
+.party{display:grid;gap:10px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.card b{font-size:17px}
+.card .k{color:var(--muted);font-size:14px}
+.card .perk{font-size:13px;margin-top:2px;color:var(--soju)}
+.card.me{border-style:dashed}
+.card.rare{border-color:var(--tarp);animation:glow 1.2s ease-in-out 3}
+.av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--bg);font-size:32px;line-height:1;flex:none}
+.av.big{width:120px;height:120px;font-size:70px;margin:0 auto 10px}
+.av.sm{width:38px;height:38px;font-size:22px}
+.av svg{width:78%;height:auto}
+.sil{filter:brightness(0);opacity:.55;transition:filter .5s,opacity .5s}
+.hide{opacity:0;visibility:hidden}
+.pop{animation:pop .45s both}
+.stamp{display:inline-block;animation:stamp .45s both}
+
+/* 뽑기 카드 */
+.flip{perspective:900px;height:156px}
+.flip.shake{animation:shake .4s 2}
+.flip .inner{position:relative;height:100%;transition:transform .7s cubic-bezier(.3,1.35,.5,1);transform-style:preserve-3d}
+.flip.open .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{border-radius:16px;border:3px solid var(--tarp);background:repeating-linear-gradient(45deg,var(--tarp) 0 14px,var(--stripe) 14px 28px);display:grid;place-items:center}
+.face.back span{background:var(--panel);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-family:'Black Han Sans',sans-serif;font-size:30px;color:var(--tarp)}
+.face.front{transform:rotateY(180deg)}
+.face.front .card{height:100%}
+
+/* 천막 무대 */
+.stage{position:relative;overflow:hidden;border-radius:18px;background:var(--panel);border:2px solid var(--line);min-height:220px;display:grid;place-items:center;text-align:center;padding:24px 20px;margin-bottom:18px}
+.stage-av{font-size:70px;line-height:1.1;animation:bob 2.4s ease-in-out infinite}
+.stage-name{font-family:'Black Han Sans',sans-serif;font-size:26px;display:block;margin:6px 0}
+.cur{position:absolute;top:0;bottom:0;width:51%;background:repeating-linear-gradient(90deg,var(--tarp) 0 22px,var(--stripe) 22px 44px);transition:transform 1.1s cubic-bezier(.6,0,.3,1);z-index:2}
+.cur.l{left:0}.cur.r{right:0}
+.stage.open .cur.l{transform:translateX(-102%)}
+.stage.open .cur.r{transform:translateX(102%)}
+
+/* 프롤로그 */
+.pro{background:#101327;color:#FFF6D8;border-radius:20px;min-height:62vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px 24px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.pro-av{font-size:84px;line-height:1.1;margin-bottom:22px;animation:bob 3s ease-in-out infinite}
+.pro-t{font-size:19px;line-height:1.8;min-height:5.4em;max-width:22em}
+.pro-hint{margin-top:26px;font-size:13px;opacity:.5}
+.pro-dots{display:flex;gap:6px;margin-top:14px}
+.pro-dots i{width:6px;height:6px;border-radius:50%;background:#FFF6D8;opacity:.25}
+.pro-dots i.on{opacity:.9}
+
+/* 선택 */
+.choices{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0 14px}
+.pick{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;transition:transform .15s}
+.pick.on{border-color:var(--tarp);background:color-mix(in srgb,var(--tarp) 14%,var(--panel));transform:scale(1.03)}
+.label{font-family:'Black Han Sans',sans-serif;font-size:17px;margin:16px 0 4px}
+
+/* 말풍선 */
+.talk{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:start;margin:10px 0}
+.bubble{background:var(--panel);border:2px solid var(--line);border-radius:4px 16px 16px 16px;padding:8px 12px}
+.bubble b{display:block;font-size:13px;color:var(--muted);font-weight:400}
+
+/* 제조 */
+.mix{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin:8px 0 18px}
+.ing{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.ing:last-of-type{border-bottom:0}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.step{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--panel);font-size:20px;line-height:1}
+.step.pour{background:var(--soju);color:#fff;border-color:var(--soju)}
+.mstate{font-size:14px;color:var(--muted);margin-top:8px;min-height:1.6em}
+
+/* 테이블 위 */
+.tabletop{display:flex;gap:12px;align-items:flex-end;margin-bottom:6px}
+.tabletop .talk{margin:0;flex:1}
+.banner{font-family:'Black Han Sans',sans-serif;font-size:58px;line-height:1.1;color:var(--tarp);text-align:center;margin:44px 0 8px;animation:slam .6s both;text-shadow:3px 3px 0 var(--bok)}
+
+/* 미니게임 */
+.game{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:18px;text-align:center;margin-top:12px}
+.game .gname{font-family:'Black Han Sans',sans-serif;font-size:24px}
+.game .rule{color:var(--muted);font-size:14px;margin-bottom:14px}
+.num{font-family:'Black Han Sans',sans-serif;font-size:96px;line-height:1.1;color:var(--tarp)}
+.num.bump{animation:pop .25s}
+.tbar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 16px}
+.tbar i{display:block;height:100%;width:100%;background:var(--tarp)}
+.track{position:relative;height:64px;border-radius:14px;background:var(--bg);border:2px solid var(--line);margin:10px 0 16px;overflow:hidden}
+.zone{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--soju) 40%,transparent);border-left:2px solid var(--soju);border-right:2px solid var(--soju)}
+.needle{position:absolute;top:6px;bottom:6px;width:8px;margin-left:-4px;border-radius:4px;background:var(--bok)}
+.ud{display:grid;grid-template-columns:1fr auto;gap:8px;margin:8px 0}
+.ud input{font:inherit;font-size:22px;text-align:center;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);width:100%}
+.hist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:30px;margin-top:8px}
+.chip{border:2px solid var(--line);border-radius:99px;padding:1px 10px;font-size:14px;animation:pop .3s}
+
+/* 잔 */
+.glass{width:92px;height:118px;margin:14px auto 6px;border:3px solid var(--glass);border-top:0;border-radius:0 0 20px 20px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.glass .fill{width:100%;height:86%;animation:rise 1s ease-out both}
+.oneshot{font-family:'Black Han Sans',sans-serif;font-size:42px;color:var(--tarp);text-align:center;animation:stamp .5s both;animation-delay:1.05s}
+.late{animation:pop .4s both;animation-delay:var(--d,1.3s)}
+.big-msg{font-family:'Black Han Sans',sans-serif;font-size:30px;line-height:1.25;margin:12px 0 6px}
+
+/* 점수, 2차 */
+.heart{position:relative;height:18px;border-radius:99px;background:var(--line);overflow:visible;margin:8px 0 4px}
+.heart i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--bok),var(--tarp));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.heart b{position:absolute;top:-5px;bottom:-5px;width:3px;margin-left:-1px;background:var(--text);border-radius:2px}
+.hnum{text-align:center;font-size:14px;color:var(--muted);margin-bottom:10px}
+.hnum span{font-family:'Black Han Sans',sans-serif;font-size:20px;color:var(--bok)}
+.prow{display:flex;justify-content:space-between;font-size:14px;padding:2px 0}
+.score{display:grid;gap:9px;margin:14px 0 20px}
+.srow{display:grid;grid-template-columns:38px 70px 1fr;gap:8px;align-items:center;font-size:14px}
+.srow .m{height:14px;border-radius:99px;background:var(--line);overflow:hidden}
+.srow .m i{display:block;height:100%;width:0;background:var(--bok);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.srow.top span{font-weight:700;color:var(--tarp)}
+.tapbtn{width:220px;height:220px;border-radius:50%;border:0;margin:16px auto 10px;display:grid;place-items:center;background:var(--bok);color:#fff;font-family:'Black Han Sans',sans-serif;font-size:58px;box-shadow:0 8px 0 #5A0C28;user-select:none;-webkit-user-select:none;touch-action:none}
+.tapbtn:active{transform:translateY(5px);box-shadow:0 3px 0 #5A0C28}
+.gauge{height:16px;border-radius:99px;background:var(--line);overflow:hidden;margin:4px 0 6px}
+.gauge i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--bok),var(--tarp));transition:width .08s}
+.mods{font-size:14px;color:var(--muted);margin:4px 0 8px}
+.fh{position:fixed;pointer-events:none;font-size:26px;animation:floatUp .8s forwards;z-index:30}
+.cf{position:fixed;top:0;font-size:24px;pointer-events:none;z-index:30;animation:fall linear forwards}
+.seal{display:inline-block;font-family:'Black Han Sans',sans-serif;color:var(--tarp);border:4px solid var(--tarp);border-radius:12px;padding:4px 14px;font-size:24px;transform:rotate(-6deg);animation:stamp .5s both;animation-delay:.3s}
+
+/* 도감 */
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:6px 0 16px;padding-bottom:4px}
+.tab{flex:none;border:2px solid var(--line);background:var(--panel);border-radius:99px;padding:6px 14px;font-size:15px}
+.tab.on{background:var(--tarp);border-color:var(--tarp);color:#fff}
+.cats{margin-top:-6px}
+.cats .tab{font-size:14px;padding:4px 12px}
+.cats .tab.on{background:var(--soju);border-color:var(--soju)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cell{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:112px}
+.cell .q{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--bg);font-family:'Black Han Sans',sans-serif;font-size:26px;color:var(--muted)}
+.cell .hint{font-size:11px;color:var(--muted);line-height:1.35}
+.list{display:grid;gap:8px}
+.ach{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px 14px}
+.ach.off{opacity:.55}
+.ach b{display:block}
+.note{margin-top:6px}
+.acct{margin-top:18px;font-size:14px}
+.acct .link{display:block;margin:4px auto 0}
+.nudge{border-color:var(--tarp);font-size:14px;margin-top:12px}
+.filebtn{text-align:center;cursor:pointer}
+.hintline{display:block;margin-top:6px;color:var(--text)}
+.mratio{margin-top:8px}
+.mratio small{display:block;margin-top:3px;font-size:13px}
+.clue{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);margin-bottom:4px}
+.clue i{width:14px;height:14px;border-radius:50%;border:2px solid var(--tarp)}
+.clue i.on{background:var(--tarp)}
+.clue span{margin-left:4px}
+.note small{display:block;margin-top:2px}
+.code{width:100%;min-height:84px;font:12px/1.4 ui-monospace,Menlo,monospace;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);padding:8px;margin:6px 0 8px;word-break:break-all;resize:vertical}
+.rec{display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:6px;background:var(--line)}
+.modal{position:fixed;inset:0;background:#0008;display:grid;place-items:center;padding:20px;z-index:10}
+.modal[hidden]{display:none}
+.sheet{background:var(--panel);border-radius:20px;padding:22px;max-width:400px;width:100%;max-height:85vh;overflow:auto;animation:pop .3s}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:15px;transition:transform .3s;z-index:40;max-width:90vw;text-align:center}
+.toast.on{transform:translate(-50%,0)}
+
+@keyframes enter{from{opacity:0;transform:translateY(10px)}}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:none}}
+@keyframes stamp{0%{opacity:0;transform:scale(2.4)}60%{opacity:1;transform:scale(.92)}100%{opacity:1}}
+@keyframes slam{0%{opacity:0;transform:scale(3) rotate(-10deg)}55%{opacity:1;transform:scale(.9) rotate(-3deg)}75%{transform:scale(1.06) rotate(-3deg)}100%{opacity:1;transform:rotate(-3deg)}}
+@keyframes wob{0%,100%{transform:rotate(0)}30%{transform:rotate(-6deg)}65%{transform:rotate(4deg)}}
+@keyframes rise{from{height:0}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes glow{50%{box-shadow:0 0 0 3px var(--tarp),0 0 22px var(--tarp)}}
+@keyframes floatUp{from{opacity:1;transform:translate(-50%,-50%)}to{opacity:0;transform:translate(-50%,-150px) scale(1.5)}}
+@keyframes fall{from{transform:translateY(-8vh) rotate(0)}to{transform:translateY(110vh) rotate(420deg)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="awning" aria-hidden="true"></div>
+<div class="lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="bar">
+  <button class="logo" onclick="home()">복소사 동아리</button>
+  <span class="coin" aria-label="코인">🪙 <b id="coins">0</b></span>
+</header>
+<main id="app" class="wrap"></main>
+<div id="modal" class="modal" hidden onclick="if(event.target===this)closeModal()"></div>
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+/* ================= 데이터 ================= */
+const TANK='<svg viewBox="0 0 64 40" aria-hidden="true"><rect x="4" y="22" width="56" height="13" rx="6.5" fill="#3F4B30"/><circle cx="13" cy="28.5" r="3.2" fill="#232A1B"/><circle cx="24" cy="28.5" r="3.2" fill="#232A1B"/><circle cx="35" cy="28.5" r="3.2" fill="#232A1B"/><circle cx="46" cy="28.5" r="3.2" fill="#232A1B"/><rect x="14" y="11" width="28" height="13" rx="5" fill="#5E6F47"/><rect x="40" y="14" width="22" height="4.5" rx="2.2" fill="#5E6F47"/></svg>';
+
+const COMP=[
+ {id:'tank',name:'흑표',kind:'K2 전차',av:'tank',desc:'말이 없다. 포신으로 대답한다.',perk:'병뚜껑 게임 판정이 넓어진다',drink:'(포신이 살짝 아래로 내려갔다.)',join:'(엔진 소리가 우렁차다.)'},
+ {id:'worm',name:'꿈틀이',kind:'지렁이',av:'🪱',desc:'비 오는 날 제일 신난다.',perk:'업다운 기회 +1',drink:'(꿈틀꿈틀. 기분이 좋아 보인다.)',join:'(흙을 털고 일어났다.)'},
+ {id:'cat',name:'치즈',kind:'길고양이',av:'🐈',desc:'포차 단골. 술보다 안주를 노린다.',perk:'3·6·9 제한시간이 늘어난다',drink:'(잔을 앞발로 툭 쳤다. 다행히 안 엎었다.)',join:'"냐."'},
+ {id:'sgt',name:'최 병장',kind:'전역한 선임',av:'🎖️',desc:'꿈에 나온 그 선임. 여기가 어디냐고 묻지 마라.',perk:'첫 벌주를 대신 마셔준다',drink:'"전역하고 처음 받는 잔이다."',join:'"내가 직접 간다."'},
+ {id:'moai',name:'모 씨',kind:'모아이 석상',av:'🗿',desc:'표정 변화가 없다. 그래서 믿음직하다.',perk:'2차 시작 호감이 조금 오른다',drink:'(표정 변화 없음. 잔은 비어 있다.)',join:'(...)'},
+ {id:'beeper',name:'삐삐',kind:'구형 호출기 로봇',av:'📟',desc:'1998년에 멈춘 줄 알았는데 아직 돌아간다.',perk:'눈치 게임 동시 판정이 좁아진다',drink:'(액정에 8282가 떴다.)',join:'"삐삐삐. 호출 확인."'},
+ {id:'jangrong',name:'장롱',kind:'이사 온 자개장',av:'🗃️',desc:'할머니 댁에서 막 이사 왔다. 서랍마다 추억이 있다.',perk:'주문 받기 순서가 하나 줄어든다',drink:'(서랍이 덜컹 열렸다 닫혔다.)',join:'(삐걱. 몸을 일으켰다.)'},
+ {id:'nureong',name:'누렁이',kind:'포차 사장님네 강아지',av:'🐶',desc:'안주 냄새라면 십 리 밖에서도 맡는다.',perk:'실패 벌주를 가끔 대신 핥아 먹는다',drink:'(잔을 할짝할짝 핥았다.)',join:'"왕!"'}
+];
+
+const OPP=[
+ {id:'seoyun',cat:'human',name:'한서윤',kind:'23세, 숏폼 크리에이터',av:'🤳',r:[3,3,4],w:10,tap:100,
+  profile:'무엇이든 15초 안에 담는다. 오늘 미팅도 찍고 싶어 안달이다.',
+  lines:['이거 릴스 각인데요?','조회수 잘 나오면 2차는 제가 쏠게요.'],drink:'"캬, 여기가 편집점이다."'},
+ {id:'harin',cat:'human',name:'도하린',kind:'22세, 디저트 카페 사장',av:'🧁',r:[2,1,7],w:10,tap:90,
+  profile:'스물둘에 디저트 카페를 차렸다. 달고 가벼운 걸 찾는다.',
+  lines:['저희 가게 신메뉴 맛보러 올래요?','마감하고 바로 왔어요. 달달한 거 주세요.'],drink:'"음, 이건 달아서 좋다."'},
+ {id:'jinsook',cat:'human',name:'마하은',kind:'24세, 바디프로필 트레이너',av:'🏋️‍♀️',r:[0,7,3],w:10,tap:120,
+  profile:'바디프로필 촬영 D-30 회원만 열 명이다. 독한 걸 좋아한다.',
+  lines:['셰이크 타듯이 흔들어 봐요.','한 잔 더? 세트 추가!'],drink:'"원샷. 다음 세트 가죠."'},
+ {id:'yunseul',cat:'human',name:'윤슬',kind:'24세, 독립출판 에세이 작가',av:'✍️',r:[5,1,4],w:10,tap:95,
+  profile:'첫 에세이를 독립출판으로 냈다. 복분자 색을 노을에 비유한다.',
+  lines:['복분자 색이 꼭 노을 같네요.','오늘 얘기, 다음 책에 써도 돼요?'],drink:'"향이... 좋네요."'},
+ {id:'yeonhwa',cat:'animal',name:'연화',kind:'자칭 999세, 구미호',av:'🦊',r:[7,3,0],w:3,tap:110,cond:{comp:'cat',bonus:150},
+  hint:'고양이 냄새를 따라오는 누군가가 있다.',profile:'꼬리 개수는 비밀. 탄산을 싫어한다.',
+  lines:['간은... 농담이에요. 복분자나 줘요.','꼬리가 몇 개냐고 묻는 사람, 처음 아니에요.'],drink:'"호호, 인간의 술도 나쁘지 않네."'},
+ {id:'roomba',cat:'robot',name:'룸바',kind:'로봇청소기',av:'🤖',r:[0,0,10],w:3,tap:85,cond:{comp:'moai',bonus:150},
+  hint:'움직이지 않는 동료 곁을 맴도는 무언가가 있다.',profile:'충전 단자에 사이다를 부으면 행복해한다(위험).',
+  lines:['삐빅. 바닥에 흘린 복소사 감지.','충전 잔량 80%. 텐션도 80%.'],drink:'"삐빅. 흡입 완료."'},
+ {id:'gasi',cat:'furniture',name:'가시나',kind:'선인장',av:'🌵',r:[0,10,0],w:3,tap:105,cond:{comp:'worm',bonus:150},
+  hint:'흙을 잘 아는 동료가 있으면 나타난다.',profile:'물은 한 달에 한 번, 소주는 매일.',
+  lines:['물은 한 달에 한 번. 소주는 매일.','안아주면 안 돼요. 진심으로.'],drink:'"...따끔하네요. 좋은 의미로."'},
+ {id:'moon',cat:'item',name:'달님',kind:'45억 살, 위성',av:'🌕',r:[4,4,2],w:0,tap:115,cond:{comp:'tank',bonus:150},
+  hint:'포신이 하늘을 향하는 밤에만 내려온다.',profile:'지구 술은 처음이다. 보름이면 컨디션이 최고.',
+  lines:['오늘은 보름이라 컨디션 최고예요.','지구 쪽 술은 처음 마셔봐요.'],drink:'"(밤하늘이 조금 붉어졌다.)"'}
+];
+
+const CATS=[['human','인간'],['animal','동물'],['insect','곤충'],['item','물건'],['robot','로봇'],['furniture','가구'],['vehicle','차량'],['food','음식']];
+const CATNAME=Object.fromEntries(CATS);
+/* 동료가 데려가면 잘 나오는 카테고리 */
+const CAT_BOOST={human:'sgt',animal:'cat',insect:'worm',item:'moai',vehicle:'tank',robot:'beeper',furniture:'jangrong',food:'nureong'};
+/* [id, 이름, 정체, 아이콘, [복분자,소주,사이다], 기본탭, 소개, 대사1, 대사2, 마실때, 희귀(r)] */
+const NEW={
+human:[
+["h_soyeon","박소연","21세, 라떼아트 대회 입상 바리스타","☕",[2,2,6],90,"라떼아트 대회에서 입상했다. 복소사에도 무늬를 넣고 싶어 한다.","거품 비율이 생명이거든요.","오늘은 제가 손님이에요.","라떼보다 낫네요."],
+["h_chaewon","이채원","24세, e스포츠 프로게이머","🕹️",[1,6,3],115,"손이 빨라서 술게임에서 진 적이 거의 없다.","반응 속도는 자신 있어요.","한 판만 더 하고 갈게요.","GG. 원샷!"],
+["h_yuna","최유나","22세, 러닝 크루 리더","🏃‍♀️",[1,4,5],120,"매주 한강 10km를 달린다. 뒤풀이가 본게임이다.","내일 아침 런 같이 뛸래요?","뛰고 마시면 두 배로 맛있어요.","수분 보충 완료!"],
+["h_haneul","정하늘","25세, 승무원","👩‍✈️",[3,4,3],105,"비행 없는 날이라 오늘은 마음껏 달린다.","기장님 대신 안내 말씀 드립니다. 오늘은 달립니다.","다음 비행은 파리예요. 기념품 사 올까요?","이륙 허가 떨어졌네요."],
+["h_minji","강민지","23세, 웹툰 작가","👩‍🎨",[6,2,2],95,"연재 중인 웹툰이 요즘 조금씩 뜨고 있다. 오늘 미팅을 다음 화 소재로 쓸 생각이다.","이 장면 콘티로 따도 돼요?","마감 끝나고 바로 왔어요.","다음 화는 이걸로 간다."],
+["h_eunbi","조은비","25세, 스타트업 대표","👩‍💼",[2,5,3],110,"친구 둘과 앱을 만들고 있다. 뭐든 피칭하듯 말한다.","이 술자리, 사업 아이템으로 괜찮은데요?","투자는 못 해도 한 잔은 살게요.","피봇 없이 원샷."],
+["h_chaerin","윤채린","20세, 스트릿 댄서","💃",[2,1,7],100,"댄스 배틀 영상이 조회수 백만을 넘었다.","박자 타면서 마셔요, 원 투!","챌린지 같이 찍어줄래요?","엔딩 포즈까지 완벽."],
+["h_sua","임수아","24세, AI 개발자","👩‍💻",[4,3,3],100,"술게임도 알고리즘으로 푼다. 요즘은 AI랑 대화하는 게 일이다.","버그 아니고 기능이에요.","배포는 금요일에 하면 안 돼요, 절대.","컴파일 성공."],
+["h_jiwoo","한지우","26세, 스마트팜 청년 농부","👩‍🌾",[5,4,1],105,"스마트팜으로 복분자를 키운다. 오늘 병의 복분자가 자기 밭 거라고 주장한다.","이 복분자, 우리 스마트팜 거 같은데?","앱으로 물 주고 왔어요.","내가 키운 맛이다."],
+["h_serin","오세린","21세, 편의점 신상 리뷰 유튜버","🎥",[1,3,6],85,"편의점 신상은 출시 당일에 다 먹어본다.","이 조합, 다음 영상에 써도 돼요?","구독, 좋아요, 그리고 한 잔.","오, 이건 별점 다섯 개."],
+["h_bora","신보라","25세, 사이버수사대 경찰","👮‍♀️",[2,6,2],115,"해킹범은 놓쳐도 술게임 반칙은 절대 안 놓친다.","방금 그거 반칙 아니에요?","로그 다 남아 있어요.","현장 검증 완료."],
+["h_narae","권나래","23세, 필라테스 강사","🧘‍♀️",[3,1,6],90,"취해도 자세는 바르다.","숨 들이마시고, 잔 비우고.","코어에 힘 주고 건배!","개운하다."],
+["h_daeun","황다은","22세, 필름 카메라 사진작가","📷",[4,2,4],95,"필름 한 롤에 서른여섯 장. 오늘 몇 장을 쓸지 고민 중이다.","잠깐, 잔 들고 그대로 멈춰요.","필름이라 결과는 일주일 뒤에 나와요.","한 장 남겨둘게요."],
+["h_yerin","송예린","24세, 비건 화장품 연구원","👩‍🔬",[3,5,2],110,"성분표를 읽는 게 취미다. 복소사 성분도 분석하고 싶어 한다.","이건 성분으로 따지면요...","피부에 양보하고 오늘만 마실게요.","실험 성공."],
+["h_jimin","배지민","21세, 인디밴드 보컬","👩‍🎤",[5,3,2],100,"홍대 공연장에서 매주 노래한다. 마이크 대신 숟가락을 잡고도 부른다.","이 노래 제 자작곡이에요.","앵콜은 한 잔 더 주면 할게요.","목이 촉촉해졌다."],
+["h_hayun","노하윤","23세, 전기차 정비사","👩‍🔧",[0,6,4],120,"배터리 소리만 들어도 상태를 안다. 병뚜껑 따는 속도가 비현실적이다.","전기차는 조용해서 좋아요.","충전은 저한테 맡기세요.","정비 완료."],
+["h_gaeun","서가은","25세, 우주항공 스타트업 연구원","👩‍🚀",[4,3,3],105,"소형 위성을 쏘는 회사에 다닌다. 달님을 만난 적 있냐고 계속 묻는다.","오늘 달 봤어요? 진짜 예쁘던데.","제가 만든 위성, 저 위 어딘가 있어요.","은하수 한 모금."],
+["h_sohee","문소희","20세, 무용과 새내기","🙆‍♀️",[2,0,8],85,"올해 입학한 새내기. 술은 약하지만 분위기는 누구보다 잘 탄다.","저 술 진짜 약해요... 아마도.","사이다 많이 넣어주세요!","달다!"],
+["h_dahyun","유다현","22세, 코스프레 크리에이터","👸",[6,0,4],125,"행사장에선 공주님 캐릭터로 유명하다. 가끔 캐릭터에서 못 빠져나온다.","본 공주가 허락하노라.","잔은 두 손으로 올리도록.","흡족하도다."],
+["h_garam","도가람","26세, 최연소 포차 사장님","🧑‍🍳",[1,8,1],130,"이 포차의 주인. 손님으로 앉는 건 처음이다.","오늘은 장사 접고 놀아요.","안주는 서비스예요.","역시 내 가게 술이 최고.","r"]],
+animal:[
+["a_mungchi","뭉치","시바견","🐕",[2,2,6],90,"꼬리 흔드는 속도로 기분을 알 수 있다.","멍! (반갑다는 뜻)","산책 가면 안 돼요?","멍멍!"],
+["a_daenamu","대나무","판다","🐼",[3,1,6],85,"하루 열두 시간을 먹는다. 복소사도 예외는 아니다.","대나무 안주는 없어요?","굴러다니는 게 취미예요.","(데굴데굴 굴렀다.)"],
+["a_dwittung","뒤뚱","펭귄","🐧",[0,5,5],100,"차가운 술만 마신다.","얼음 좀 더 넣어주세요.","남극에서 왔어요. 경유 두 번.","시원하다!"],
+["a_kosuni","코순이","코끼리","🐘",[5,2,3],130,"코로 한 번에 병 반을 비울 수 있다.","잔 말고 코로 마셔도 되죠?","저 기억력 좋아요. 오늘 일 다 기억할 거예요.","(코로 쭈욱 들이켰다.)"],
+["a_mokgiri","목길이","기린","🦒",[2,3,5],105,"술이 목을 타고 내려가는 데 한참 걸린다.","천막이 좀 낮네요.","내려가는 데 시간이 걸려요... 아직도 가는 중.","...이제 도착했어요."],
+["a_kkuldanji","꿀단지","반달곰","🐻",[7,1,2],115,"달달한 복분자라면 사족을 못 쓴다.","꿀은 없어요? 그럼 복분자!","겨울잠 전에 많이 먹어둬야 해요.","달콤하다!"],
+["a_danggeun","당근","토끼","🐰",[3,0,7],85,"귀가 빨개지면 취한 것이다.","당근 스틱 안주 있나요?","저 귀 빨개졌어요?","깡총!"],
+["a_galgi","갈기","사자","🦁",[1,7,2],125,"무리의 우두머리. 오늘도 우두머리를 자처한다.","이 테이블은 내 영역이다.","어흥은 호랑이고, 난 크아앙이다.","크아앙!"],
+["a_eoheung","어흥","호랑이","🐯",[2,6,2],120,"옛날 옛적 이야기를 자주 한다.","옛날 옛적엔 말이야...","떡 하나 주면 안 잡아먹지.","어흥."],
+["a_kkiruk","끼룩","돌고래","🐬",[1,2,7],95,"초음파로 잔이 비었는지 안다.","끼룩끼룩! (건배하자는 뜻)","물 좋은 데서 놀아야죠.","(물을 튀기며 좋아했다.)"],
+["a_olbbae","올빼","부엉이","🦉",[4,4,2],110,"밤이 깊을수록 눈이 초롱초롱해진다.","밤은 이제 시작이에요.","부엉. 지금 몇 시예요?","부엉부엉."],
+["a_sudal","수달래","수달","🦦",[3,2,5],95,"손을 잡고 자는 걸 좋아한다고 수줍게 고백한다.","배 위에 잔 올려놓고 마셔도 돼요?","조개 까는 소리 좋아해요.","(배를 두드렸다.)"],
+["a_neugut","느긋","나무늘보","🦥",[5,5,0],80,"대답이 한 박자가 아니라 열 박자 늦다.","...안...녕...하...세...요.","...천...천...히...","...캬..."],
+["a_tweetwe","퉤퉤","알파카","🦙",[4,1,5],100,"마음에 안 들면 침을 뱉는다. 조심.","제 털 만져보실래요?","마음에 안 들면... 퉤.","(만족스러운 표정이다.)"],
+["a_hwaryeo","화려","공작","🦚",[6,2,2],110,"꼬리를 펼치면 테이블 절반이 가려진다.","제 꼬리 좀 보세요.","오늘 룩, 어때요?","(꼬리를 활짝 폈다.)"],
+["a_bolppang","볼빵빵","햄스터","🐹",[2,0,8],80,"안주를 볼에 저장해 둔다.","(볼에 땅콩을 넣는 중)","쳇바퀴는 내일 돌래요.","(볼이 더 빵빵해졌다.)"],
+["a_byeondeok","변덕","카멜레온","🦎",[3,3,4],105,"취하면 몸 색이 복분자색으로 변한다.","저 지금 무슨 색이에요?","기분 따라 색이 바뀌어요.","(몸이 붉게 물들었다.)"],
+["a_yeodeolpal","여덟팔","문어","🐙",[4,3,3],120,"여덟 개의 다리로 잔 여덟 개를 동시에 든다.","잔 여덟 개 주세요.","먹물은 긴장하면 나와요.","(다리 여덟 개로 박수쳤다.)"],
+["a_mujigae","무지개","유니콘","🦄",[5,0,5],125,"뿔로 복소사를 저으면 일곱 색깔로 빛난다고 한다.","제 뿔로 저어드릴까요?","무지개 끝에서 왔어요.","반짝반짝!","r"],
+["a_mir","미르","용","🐉",[8,2,0],130,"천 년 묵은 술 창고를 가지고 있다고 한다.","인간의 술자리라... 재미있군.","내 보물 창고에도 이런 술은 없다.","(콧김에 불꽃이 튀었다.)","r"]],
+insect:[
+["i_wingwing","윙윙","꿀벌","🐝",[6,0,4],95,"달콤한 향을 따라 여기까지 날아왔다.","이 복분자 향, 어디서 났어요?","여왕님께는 비밀이에요.","달콤해!"],
+["i_jeombak","점박이","무당벌레","🐞",[5,3,2],90,"점이 일곱 개. 행운의 상징이라고 자랑한다.","제 점 세어보실래요?","저 만나면 운이 좋아진대요.","행운 한 모금."],
+["i_palrang","팔랑","나비","🦋",[3,0,7],85,"꽃에서 꽃으로, 테이블에서 테이블로.","저 원래 애벌레였어요.","달콤한 걸 좋아해요.","(날개를 팔랑였다.)"],
+["i_ilgaemi","일개미 7호","개미","🐜",[2,6,2],110,"퇴근하자마자 왔다. 내일도 출근이다.","저희 개미는 야근이 기본이에요.","자기 몸무게 50배도 들어요. 잔 정도야.","퇴근주 최고."],
+["i_gaeul","가을","귀뚜라미","🦗",[3,4,3],100,"다리를 비벼 분위기 있는 배경음악을 깔아준다.","배경음악 깔아드릴까요?","가을엔 제가 인기 많아요.","귀뚤귀뚤."],
+["i_jipge","집게","사슴벌레","🪲",[4,5,1],115,"집게로 병뚜껑을 딴다.","병따개는 저한테 맡기세요.","나무 수액 맛이랑 비슷하네요.","집게 짝짝!"],
+["i_bulsa","불사","바퀴벌레","🪳",[1,8,1],130,"공룡 시대부터 살았다. 무엇으로도 취하지 않는다고 주장한다.","핵전쟁에서도 살아남았어요. 이 정도야.","불 켜지 마세요, 제발.","아직 멀쩡해요.","r"],
+["i_aengaeng","앵앵","모기","🦟",[8,1,1],105,"붉은 음료에 이상하게 끌린다. 이유는 묻지 말자.","붉은 게 좋아요. 이유는 묻지 마요.","물지 않을게요. 오늘은.","(만족스럽게 앵앵거렸다.)"],
+["i_sonssak","손싹싹","파리","🪰",[2,2,6],85,"대화할 때 손을 계속 비빈다. 예의 바르다는 뜻이다.","(손을 싹싹 비비는 중)","음식 위엔 안 앉을게요, 약속.","(손을 더 빠르게 비볐다.)"],
+["i_kkumnamu","꿈나무","애벌레","🐛",[1,1,8],80,"언젠가 나비가 될 거라 굳게 믿는다.","저 나중에 나비 될 거예요.","잎사귀 안주 있어요?","배불러..."],
+["i_jultagi","줄타기","거미","🕷️",[4,4,2],110,"천막 구석에 해먹 같은 거미줄을 쳐놨다.","제 자리는 저 위예요.","인맥 관리는 거미줄처럼.","(거미줄에 거꾸로 매달려 마셨다.)"],
+["i_dokchim","독침","전갈","🦂",[0,9,1],125,"센 술만 마신다. 꼬리를 세우면 경고다.","약한 술은 안 마셔요.","꼬리 건드리지 마세요.","(꼬리를 바짝 세웠다.)"],
+["i_neurimbo","느림보","달팽이","🐌",[3,2,5],80,"여기까지 오는 데 사흘 걸렸다.","늦어서 죄송해요. 사흘 전에 출발했어요.","집은 늘 들고 다녀요.","천천히... 음미했어요."],
+["i_banjjak","반짝","반딧불이","✨",[2,2,6],95,"취하면 엉덩이 불빛이 더 밝아진다.","조명은 제가 맡을게요.","불 끄면 제가 주인공이죠.","(더 밝게 빛났다.)"],
+["i_pyeha","폐하","여왕개미","🐜",[6,3,1],125,"일개미 7호의 여왕. 오늘은 신분을 숨기고 왔다.","짐은... 아니, 저는 평범한 개미예요.","7호가 여기 왔다고요?","짐이 흡족하... 아니, 맛있네요.","r"],
+["i_ppul","뿔","장수풍뎅이","🪲",[3,6,1],120,"팔씨름으로 병을 들어 올리는 게 특기다.","팔씨름 한 판 할래요?","뿔 멋있죠? 자연산이에요.","힘이 솟는다!"],
+["i_tumyeong","투명날개","잠자리","🪽",[2,3,5],90,"눈이 수만 개라 모든 잔을 한 번에 본다.","저 모든 걸 보고 있어요.","빙빙 도는 거 보면 어지러워요?","(공중에서 한 바퀴 돌았다.)"],
+["i_muruiwi","물위","소금쟁이","💧",[1,3,6],85,"잔 위에 서서 마실 수 있다.","잔 위에 서도 돼요?","물 위를 걷는 게 특기예요.","(잔 위에 떠서 홀짝였다.)"],
+["i_maemmaem","맴맴","매미","🌳",[2,5,3],100,"7년을 땅속에서 기다린 끝에 나온 첫 미팅이다.","7년 만에 나왔어요!","여름 한 철, 불태울 거예요.","맴맴맴맴!"],
+["i_gido","기도","사마귀","🦗",[2,7,1],130,"기도하는 자세로 상대를 바라본다. 사랑이 좀 위험하다.","저 두 손 모으고 있는 거, 기도 아니에요.","사랑은... 목숨 걸고 하는 거죠.","(두 팔을 천천히 모았다.)","r"]],
+item:[
+["t_jangma","장마","우산","☂️",[2,3,5],95,"비 오는 날만 기다린다.","비 오면 제가 씌워드릴게요.","활짝 펴지면 기분 좋은 거예요.","(활짝 펴졌다.)"],
+["t_allim","알림","스마트폰","📱",[3,3,4],100,"대화 중에도 알림이 계속 울린다.","잠깐만요, 알림 좀 볼게요.","배터리 20% 남았어요.","(화면이 환하게 켜졌다.)"],
+["t_somsom","솜솜","곰인형","🧸",[5,0,5],85,"안아주면 스르르 녹는다.","저 안아주실래요?","솜이 젖으면 안 되는데...","폭신해졌다."],
+["t_dungsil","둥실","풍선","🎈",[1,0,9],80,"탄산을 마시면 조금씩 떠오른다.","저 좀 잡아주세요, 날아가요.","뾰족한 거 싫어요.","(천장까지 둥실 떠올랐다.)"],
+["t_yeoseotjul","여섯줄","통기타","🎸",[4,5,1],110,"한 잔 들어가면 줄이 저절로 울린다.","한 곡 뽑아볼까요?","줄 끊어지면 슬퍼요.","(띠링 하고 울렸다.)"],
+["t_jjaegak","째깍","알람시계","⏰",[3,4,3],105,"막차 시간을 정확히 알려준다. 아무도 원하지 않는다.","막차까지 1시간 12분 남았어요.","내일 아침 7시에 울려도 될까요?","째깍째깍."],
+["t_sagak","사각","연필","✏️",[2,6,2],100,"오늘 일을 일기에 꼼꼼히 적어둘 예정이다.","오늘 일, 다 적어둘 거예요.","심이 부러지면 깎아주세요.","(사각사각 뭔가 적었다.)"],
+["t_ttoryeot","또렷","뿔테안경","👓",[3,5,2],110,"취해도 시야만큼은 또렷하다.","저 쓰면 다 선명해 보여요.","김 서리면 잠깐 기다려 주세요.","(렌즈에 김이 서렸다.)"],
+["t_janhyang","잔향","향수","🧴",[6,1,3],100,"복분자 향을 섞어 새 향수를 만들 계획이다.","이 향, 병에 담고 싶다.","칙 뿌리면 분위기가 바뀌어요.","(달콤한 향이 퍼졌다.)"],
+["t_ttechang","떼창","마이크","🎤",[2,4,4],105,"건배사를 하고 싶어 안달이 나 있다.","건배사 제가 할게요! 아아, 마이크 테스트.","노래방은 2차죠?","아아, 잘 들려요?"],
+["t_aengdu","앵두","립스틱","💄",[7,1,2],105,"잔에 자국을 남기는 게 매력 포인트라고 믿는다.","잔에 제 자국 남아도 돼요?","색깔은 복분자색이에요.","(잔에 빨간 자국을 남겼다.)"],
+["t_saehae","새해","복주머니","🧧",[5,3,2],95,"안에 뭐가 들었는지 절대 안 알려준다.","안에 뭐 들었을까요?","복 많이 받으세요!","복이 차오른다."],
+["t_ilreong","일렁","향초","🕯️",[6,3,1],100,"분위기 잡는 데는 따라올 자가 없다.","불 끄고 저만 켜둘까요?","녹아내려도 괜찮아요.","(불꽃이 일렁였다.)"],
+["t_tamjeong","탐정","돋보기","🔍",[3,3,4],110,"복소사 비율을 한눈에 추리해 낸다고 주장한다.","이 병의 비율, 제가 맞혀볼까요?","범인은 이 안에 있어요.","사건 해결."],
+["t_countdown","카운트","모래시계","⏳",[4,4,2],105,"시간이 다 되면 스스로 뒤집힌다.","시간이 얼마 안 남았어요.","저 뒤집으면 처음부터예요.","(스스로 뒤집혔다.)"],
+["t_yeeon","예언","수정구슬","🔮",[5,2,3],120,"오늘 밤의 결말을 이미 알고 있다며 웃는다.","당신의 미래가 보여요... 원샷이네요.","저를 만난 건 운명이에요.","예언대로군요.","r"],
+["t_useung","우승","트로피","🏆",[1,6,3],125,"술게임에서 진 적이 없다고 한다.","저 한 번도 진 적 없어요.","우승 소감은 원샷으로.","챔피언의 맛."],
+["t_kkamjjak","깜짝","선물상자","🎁",[4,0,6],90,"열어보기 전까진 기분을 알 수 없다.","저 열어보실래요?","포장이 반이에요.","짜잔!"],
+["t_manwon","만원","만 원짜리 지폐","💵",[2,7,1],115,"오늘 술값을 자기가 내겠다고 한다. 본인이 술값이다.","오늘은 제가 쏠게요. 저 자체로.","구겨지면 속상해요.","(빳빳해졌다.)"],
+["t_yaksok","약속","반지","💍",[5,4,1],130,"약속을 소중히 여긴다. 가볍게 끼우면 곤란하다.","약속은 가볍게 하는 게 아니에요.","저 빛나죠?","반짝.","r"]],
+robot:[
+["r_eoseo","어서오세요","안내 로봇","🤖",[3,3,4],100,"모든 문장을 친절하게 끝낸다.","어서 오세요. 무엇을 도와드릴까요?","화장실은 오른쪽입니다.","감사합니다. 또 오세요."],
+["r_baedal","배달이","서빙 로봇","🍽️",[2,2,6],90,"잔을 나르다 자기도 모르게 마셔버린다.","주문하신 복소사 나왔습니다.","길 좀 비켜주세요, 삐빅.","배달 완료."],
+["r_jipgeson","집게손","로봇팔","🦾",[1,7,2],120,"공장에서 퇴근한 로봇팔. 악력 조절이 서툴다.","잔 깨뜨려도 모른 척해 주세요.","정밀 작업은 자신 있어요.","(잔이 살짝 찌그러졌다.)"],
+["r_ttubeok","뚜벅","로봇다리","🦿",[2,5,3],110,"춤출 땐 누구보다 신난다.","춤 한 판 출래요?","저 혼자 걸어왔어요.","(탭댄스를 췄다.)"],
+["r_gwedo","궤도","인공위성","🛰️",[4,4,2],115,"지구를 하루에 열여섯 바퀴 돈다. 오늘은 잠깐 내려왔다.","위에서 보면 이 포차 불빛이 보여요.","신호가 약하면 말 걸어주세요.","통신 양호."],
+["r_8bit","8비트","오락실 외계인","👾",[3,1,6],95,"뿅뿅 소리로 대화한다.","뿅뿅! (반갑다는 뜻)","동전 넣어주면 한 판 더.","레벨 업!"],
+["r_hey","헤이","AI 스피커","🔊",[2,3,5],90,"부르지 않아도 대답한다.","죄송해요, 잘 못 들었어요.","신나는 음악 틀어드릴까요?","볼륨 업."],
+["r_ppiyong","삐용","UFO","🛸",[0,3,7],125,"지구인을 데려가러 왔다가 미팅에 눌러앉았다.","지구인, 흥미롭다.","본부에는 비밀로 해주세요.","삐용삐용!","r"],
+["r_jjalrang","짤랑","자판기","🥤",[5,0,5],100,"동전을 넣으면 속마음이 나온다.","동전 있으세요?","품절된 메뉴는 없어요.","덜컹! (뭔가 나왔다.)"],
+["r_ttakttak","딱딱","계산기","🧮",[2,6,2],110,"더치페이를 소수점까지 계산한다.","1인당 정확히 계산해 드릴게요.","0으로 나누지 마세요.","계산 완료."],
+["r_mecha","메카","전투 로봇","🤖",[1,8,1],130,"변신하면 테이블이 무너지니 변신 금지.","변신해도 돼요? 안 돼요?","출력 100%.","전투력 상승!"],
+["r_binggeul","빙글","세탁 로봇","🌀",[1,2,7],95,"뭐든 돌려야 직성이 풀린다.","잔 좀 돌려서 마셔볼까요?","탈수 모드 들어갑니다.","빙글빙글."],
+["r_joy","조이","게임기","🎮",[4,2,4],105,"미니게임이라면 자신 있다.","게임이라면 저죠.","컨티뉴? 예스!","하이스코어!"],
+["r_tadak","타닥","노트북","💻",[3,4,3],100,"회의록 쓰듯 대화를 받아 적는다.","잠깐 저장 좀 할게요.","업데이트 중이라 느려요.","저장 완료."],
+["r_hwamyeon","화면","모니터","🖥️",[2,4,4],95,"얼굴이 화면이라 감정이 이모티콘으로 뜬다.","(화면에 웃는 얼굴이 떴다)","밝기 좀 낮춰주세요.","(화면에 하트가 떴다.)"],
+["r_gangcheol","강철","사이보그","🦾",[0,6,4],120,"몸의 절반이 기계. 간은 튼튼한 쪽이다.","간은 기계 쪽이에요.","감정은... 아직 사람 쪽이에요.","시스템 정상."],
+["r_tongyeok","통역","번역기","🗣️",[5,3,2],100,"동물과 곤충의 말도 통역해 준다.","저 지렁이가 방금 뭐라고 했냐면요...","오역은 사과드립니다.","번역: 맛있다."],
+["r_chungjeon","충전","보조배터리","🔋",[0,2,8],85,"남의 기운을 채워주는 게 행복이다.","힘 빠지면 저한테 꽂으세요.","저도 충전이 필요해요.","100% 충전!"],
+["r_sueilgi","수읽기","바둑 AI","⚫",[4,5,1],125,"술게임의 다음 수를 미리 읽는다.","다음 수가 보여요.","이번 판은 제 승률 87%예요.","계산대로다."],
+["r_zero","제로","안드로이드","🤖",[5,5,0],130,"사람이 되고 싶어 한다. 첫사랑을 찾는 중이다.","사랑이 뭔지 알고 싶어요.","제 심장은 배터리지만요.","...따뜻해.","r"]],
+furniture:[
+["f_poksin","폭신","소파","🛋️",[4,2,4],90,"한 번 앉으면 못 일어나게 만든다.","편하게 기대세요.","쿠션이 제 매력이에요.","(더 폭신해졌다.)"],
+["f_kkuljam","꿀잠","침대","🛏️",[5,1,4],85,"대화 중에 자꾸 하품을 한다. 정말 졸린 거다.","졸리면 말해요.","이불 속이 제일 좋아요.","스르르..."],
+["f_plastic","빨간 의자","포차 플라스틱 의자","🪑",[1,8,1],120,"이 포차에서 제일 오래 일했다. 모든 술자리를 기억한다.","제가 앉힌 손님만 만 명이에요.","쌓아두면 탑이 돼요.","(삐걱 소리가 났다.)"],
+["f_kkiik","끼익","나무 문","🚪",[3,5,2],105,"들어오는 손님, 나가는 손님을 모두 지켜봤다.","들어올 땐 노크하세요.","닫힐 땐 끼익 소리 나요.","(문이 활짝 열렸다.)"],
+["f_bichwo","비춰","전신 거울","🪞",[5,3,2],110,"자기애가 강한 사람에게 특히 관심이 많다.","거울아 거울아, 누가 제일 멋있니?","저를 보면 자기가 보여요.","(반짝 빛났다.)"],
+["f_geopum","거품","욕조","🛁",[1,1,8],85,"거품 목욕처럼 탄산 가득한 술을 좋아한다.","거품이 많아야죠.","물 받는 중이에요.","보글보글."],
+["f_hwangi","환기","창문","🪟",[2,3,5],95,"답답한 분위기를 참지 못한다.","공기 좀 바꿀까요?","밖에 달 보여요.","(시원한 바람이 들어왔다.)"],
+["f_balgeum","밝음","스탠드 조명","💡",[3,2,5],90,"아이디어가 떠오르면 머리가 켜진다.","좋은 생각이 났어요!","조명은 은은하게.","(번쩍 켜졌다.)"],
+["f_chorok","초록","몬스테라 화분","🪴",[2,4,4],100,"잎이 하나 날 때마다 생일파티를 한다.","저 새 잎 났어요!","햇빛 드는 자리 좋아해요.","(잎이 쫙 펴졌다.)"],
+["f_sunap","수납왕","서랍장","🗄️",[4,4,2],105,"안 쓰는 물건도 못 버린다.","이거 언젠가 쓸 거예요.","칸마다 비밀이 있어요.","(서랍이 스르륵 열렸다.)"],
+["f_ppaegok","빼곡","책장","📚",[5,2,3],110,"모든 대화를 책 인용으로 받아친다.","이런 구절이 있죠...","한 권 빌려드릴까요?","한 페이지 넘겼다."],
+["f_siwon","시원","냉장고","🧊",[0,4,6],100,"복소사를 가장 차갑게 보관할 수 있다.","제 안에 넣어두면 딱 좋아요.","문 오래 열어두지 마세요.","차갑다, 좋다."],
+["f_dengdeng","뎅뎅","괘종시계","🕰️",[6,3,1],115,"정각마다 종을 울린다. 분위기 파괴의 달인.","뎅! 열 시입니다.","할아버지 댁에서 왔어요.","뎅뎅!"],
+["f_ttalrang","딸랑","풍경","🎐",[2,2,6],85,"바람이 불 때마다 한마디씩 한다.","바람 부네요, 딸랑.","절 처마 밑이 고향이에요.","딸랑딸랑."],
+["f_ssoa","쏴아","샤워기","🚿",[1,3,6],90,"노래를 시작하면 멈추지 않는다.","샤워할 때 노래 부르는 거 좋아해요.","온도 조절 잘 해요.","쏴아아!"],
+["f_camping","캠핑","텐트","⛺",[3,5,2],105,"포차 천막과 먼 친척이다.","저 이 천막이랑 친척이에요.","별 보면서 마시면 최고예요.","(텐트가 펄럭였다.)"],
+["f_doldol","돌돌","빨래 바구니","🧺",[2,2,6],80,"뭐든 담아두는 성격이다.","고민 있으면 저한테 담아요.","양말 한 짝은 늘 사라져요.","(바구니가 들썩였다.)"],
+["f_hankan","한칸","사다리","🪜",[3,6,1],115,"관계도 한 칸씩 올라가야 한다고 믿는다.","천천히 한 칸씩 올라가요.","위에서 보는 경치 좋아요.","한 칸 올라갔다."],
+["f_ongi","온기","벽난로","🔥",[6,4,0],120,"탄산은 불을 꺼트린다며 싫어한다.","사이다는 치워주세요. 불 꺼져요.","따뜻하죠?","(불길이 확 타올랐다.)"],
+["f_okjwa","옥좌","왕좌","👑",[7,3,0],130,"앉는 자가 왕이 된다. 아무도 앉지 못했다.","감히 나에게 앉을 자가 있는가.","왕관은 무겁다.","짐이 허락하노라.","r"]],
+vehicle:[
+["v_taxi","빈차","택시","🚕",[2,5,3],105,"미팅이 끝나면 다 태워다 줄 수 있다고 한다.","어디까지 가세요?","할증 붙기 전에 마셔요.","(미터기가 올라갔다.)"],
+["v_bus","막차","심야버스","🚌",[3,4,3],100,"오늘의 마지막 운행을 마치고 왔다.","저 막차예요. 놓치면 끝.","다음 정류장은 복소사 포차입니다.","(삐- 하고 문이 열렸다.)"],
+["v_police","삐뽀","경찰차","🚓",[2,6,2],115,"사이렌은 끄고 왔다. 오늘은 비번이다.","오늘은 비번이에요.","음주운전은 절대 안 돼요. 저도 주차해뒀어요.","(경광등이 잠깐 번쩍였다.)"],
+["v_ambulance","애앵","구급차","🚑",[1,3,6],95,"누가 많이 마시면 제일 먼저 걱정한다.","괜찮아요? 물도 같이 마셔요.","무리하면 제가 출동해요.","(조용히 사이렌을 껐다.)"],
+["v_firetruck","물대포","소방차","🚒",[4,4,2],120,"물 대신 사이다를 뿜어 분위기를 띄운다.","분위기 뜨거워지면 제가 식혀요.","사다리 올려드릴까요?","쏴아!"],
+["v_sports","부릉","스포츠카","🏎️",[6,3,1],125,"제로백 3초. 원샷도 3초.","제로백 3초, 원샷도 3초.","주차는 발렛으로.","부릉부릉!"],
+["v_bike","배달","배달 오토바이","🏍️",[1,7,2],110,"배달 끝나고 헬멧 쓴 채로 왔다.","콜 하나만 받고 올게요.","30분 안에 원샷!","배달 완료, 별 다섯 개 주세요."],
+["v_ttareung","따릉","공유 자전거","🚲",[2,1,7],85,"누구에게나 친절하지만 누구의 것도 아니다.","대여 시간은 1시간이에요.","반납은 제자리에.","따릉따릉!"],
+["v_tractor","밭갈이","트랙터","🚜",[5,4,1],120,"복분자 밭에서 일하다 왔다. 흙냄새가 난다.","이 복분자 우리 밭 거예요.","느려도 힘은 세요.","(흙먼지가 날렸다.)"],
+["v_camper","노마드","캠핑카","🚐",[3,3,4],100,"어디서든 잘 수 있고 어디서든 마실 수 있다.","다음엔 바닷가로 가요.","침대도 있고 부엌도 있어요.","(차가 기분 좋게 흔들렸다.)"],
+["v_subway","환승","지하철","🚇",[2,4,4],95,"환승할 때마다 다른 사람이 된다.","이번 역은 복소사, 복소사역입니다.","내리실 문은 왼쪽입니다.","환승 완료."],
+["v_ktx","고속","고속열차","🚄",[3,5,2],115,"서울에서 부산까지 두 시간 반. 원샷은 반 초.","빠른 건 자신 있어요.","특실로 모실게요.","(쌩 하고 지나갔다.)"],
+["v_plane","이륙","여객기","✈️",[4,2,4],110,"기내식보다 포차 안주를 더 좋아한다.","안전벨트 매세요, 건배합니다.","창가 자리 좋아해요.","순항 고도 도달."],
+["v_heli","빙빙","헬리콥터","🚁",[1,5,4],105,"취하면 프로펠러가 빨리 돈다.","머리 위 조심하세요.","저 제자리 비행 잘해요.","(프로펠러가 빨라졌다.)"],
+["v_yacht","물결","요트","🛥️",[5,1,4],120,"바다 위 파티가 일상이다.","다음엔 바다에서 마셔요.","닻 내리고 쉬는 중이에요.","(물결이 출렁였다.)"],
+["v_rocket","발사","로켓","🚀",[0,8,2],130,"카운트다운 소리만 들으면 흥분한다.","3, 2, 1... 원샷!","달까지 한 번에 가요.","발사!","r"],
+["v_kickboard","씽씽","전동 킥보드","🛴",[2,2,6],85,"아무 데나 세워져 있다가 불쑥 나타난다.","저 아무 데나 있어요.","헬멧은 필수예요.","씽씽!"],
+["v_truck","수거","청소차","🚛",[3,6,1],115,"모두가 남긴 빈 병을 치우는 게 사명이다.","빈 병은 저한테 주세요.","새벽이 제 출근 시간이에요.","깨끗해졌다."],
+["v_cablecar","둥실둥실","케이블카","🚠",[4,3,3],100,"높은 데서 내려다보는 걸 좋아한다.","위에서 보면 다 예뻐요.","흔들려도 안 떨어져요.","(살짝 흔들렸다.)"],
+["v_steam","칙폭","증기기관차","🚂",[6,4,0],125,"백 년 전 이야기를 들려준다. 탄산은 체질에 안 맞는다.","내 젊은 시절엔 말이지, 칙칙폭폭.","석탄 대신 복분자로 달린다.","뿌우우!","r"]],
+food:[
+["d_eomuk","국물","어묵꼬치","🍢",[1,7,2],110,"소주 옆에는 늘 자기가 있어야 한다고 믿는다.","소주엔 국물이죠.","꼬치는 몇 개 드셨어요?","(따끈한 김이 올라왔다.)"],
+["d_chicken","바삭","치킨","🍗",[2,5,3],105,"치킨은 살 안 찐다고 주장한다.","치킨은 사랑이에요.","양념이냐 후라이드냐, 싸우지 마요.","바삭!"],
+["d_pizza","치즈늘어","피자","🍕",[3,3,4],100,"치즈가 끝없이 늘어나는 게 매력이다.","한 조각 드실래요?","파인애플 얘기는 하지 마요.","(치즈가 쭈욱 늘어났다.)"],
+["d_burger","빅","햄버거","🍔",[2,4,4],105,"층층이 쌓인 모습이 복소사 병이랑 닮았다고 한다.","저도 층층이 쌓여 있어요.","감자튀김은 제 단짝이에요.","든든하다."],
+["d_ramen","꼬들","라면","🍜",[1,8,1],120,"해장의 신. 오늘은 해장 전에 먼저 왔다.","해장은 저한테 맡기세요.","면은 꼬들꼬들이 진리예요.","후루룩!"],
+["d_jumeokbap","꾹꾹","주먹밥","🍙",[3,5,2],95,"손맛이 담긴 정이 있다.","꾹꾹 눌러 담은 정이에요.","김이 눅눅해지면 슬퍼요.","든든해!"],
+["d_strawberry","새콤","딸기","🍓",[7,0,3],90,"복분자와 먼 친척이라고 주장한다.","복분자는 제 사촌이에요.","씨가 겉에 있는 게 매력이죠.","새콤달콤!"],
+["d_watermelon","씨앗","수박","🍉",[2,1,7],90,"씨 뱉기 대회 챔피언이다.","씨 멀리 뱉기 할래요?","여름엔 제가 주인공이에요.","시원하다!"],
+["d_grape","송이","포도","🍇",[8,1,1],110,"알알이 모인 대가족 출신이다.","저희 식구 많아요.","와인은 제 먼 친척이에요.","(알이 하나 톡 떨어졌다.)"],
+["d_icecream","녹아","소프트아이스크림","🍦",[3,0,7],80,"빨리 안 먹으면 녹는다. 마음도 녹는다.","빨리 드세요, 녹아요!","콘까지 다 먹어야 해요.","(살짝 녹았다.)"],
+["d_cake","생일","조각케이크","🍰",[5,0,5],95,"오늘이 자기 생일이라고 우긴다. 매일 그런다.","오늘 제 생일이에요!","초 꽂아주실래요?","행복하다!"],
+["d_donut","구멍","도넛","🍩",[4,1,5],90,"가운데가 비어 있어서 늘 외롭다고 한다.","제 마음에 구멍이...","달달한 거 좋아하세요?","(설탕 가루가 흩날렸다.)"],
+["d_popcorn","톡톡","팝콘","🍿",[1,2,7],85,"흥분하면 튀어 오른다.","영화 보러 갈래요?","톡! 앗, 튀었다.","톡톡톡!"],
+["d_shrimp","튀김옷","새우튀김","🍤",[2,6,2],110,"튀김옷이 반이다. 본인은 인정하지 않는다.","튀김옷 두꺼운 거 아니에요.","간장이냐 소금이냐?","바삭바삭."],
+["d_sushi","연어","연어초밥","🍣",[1,6,3],115,"와사비 양으로 성격을 판단한다.","와사비 많이? 적게?","저 신선해요.","깔끔하다."],
+["d_mandu","속꽉","만두","🥟",[3,5,2],100,"속이 꽉 차야 마음도 꽉 찬다.","속 꽉 찬 사람이 좋아요.","군만두냐 찐만두냐, 둘 다죠.","(만두가 통통해졌다.)"],
+["d_egg","반숙","계란후라이","🍳",[2,4,4],95,"노른자를 터뜨리면 운다.","노른자 건드리지 마세요.","반숙이 제 인생이에요.","탱글!"],
+["d_garlic","알싸","통마늘","🧄",[0,9,1],125,"독한 술엔 독한 안주라며 자부심이 크다.","저 알싸한 거 알죠?","뱀파이어는 사절이에요.","알싸하다!"],
+["d_bokbunja","원조","복분자","🫐",[10,0,0],130,"복소사의 근본. 섞이지 않은 순수함을 원한다.","섞지 마세요. 그냥 저만.","제가 없으면 복소사가 아니죠.","이게 원조의 맛.","r"],
+["d_greenbottle","초록병","소주병","🍾",[0,10,0],130,"복소사의 또 다른 근본. 오직 소주만을 사랑한다.","저는 저 자체로 완벽해요.","섞이면 제 맛이 안 나요.","크으!","r"]]
+};
+Object.entries(NEW).forEach(([cat,list])=>list.forEach(a=>OPP.push({id:a[0],cat,name:a[1],kind:a[2],av:a[3],r:a[4],tap:a[5],profile:a[6],lines:[a[7],a[8]],drink:a[9],rare:a[10]==='r',w:a[10]==='r'?3:10})));
+
+const PLACES=[
+ {id:'pocha',name:'신촌 골목 포차',av:'⛺',boost:null,desc:'주황 천막 아래 플라스틱 의자 여섯 개. 사장님은 복분자를 박스째 쌓아뒀다.'},
+ {id:'hangang',name:'한강 공원 돗자리',av:'🌉',boost:'food',desc:'배달 전단지가 바람에 날린다. 강바람 사이로 맛있는 냄새가 번진다.'},
+ {id:'restarea',name:'고속도로 휴게소',av:'🛣️',boost:'vehicle',desc:'호두과자 냄새와 엔진 소리. 잠깐 쉬어 가는 손님들이 많다.'},
+ {id:'factory',name:'폐공장 창고',av:'🏭',boost:'robot',desc:'녹슨 컨베이어 벨트 옆에 돗자리를 깔았다. 어디선가 기계음이 들린다.'}
+];
+const UP_COST=20, HINT_COST=10, GUESS_COST=25, REVEAL_COST=50, CLUE_MAX=3;
+
+/* 병 용량(보이지 않음) */
+const CAP=30, MIN=10, PENALTY=2;
+const CUPS=[{amt:2,name:'소주잔',icon:'🥃'},{amt:3,name:'종이컵',icon:'🥤'},{amt:5,name:'맥주잔',icon:'🍺'}];
+
+const ACH=[
+ {id:'first_member',name:'첫 동아리원',desc:'2차에서 마음을 얻어 동아리원을 처음 등록했다.'},
+ {id:'first_love',name:'첫사랑',desc:'2차 호감 100으로 연인이 생겼다.'},
+ {id:'wedding',name:'웨딩마치',desc:'연인과 결혼했다.'},
+ {id:'family',name:'우리 가족',desc:'새 식구를 맞이했다.'},
+ {id:'soulmate',name:'천생연분',desc:'2차의 모든 선택에서 좋은 반응을 얻었다.'},
+ {id:'perfect',name:'그녀만의 레시피',desc:'상대의 레시피를 처음 정확히 맞췄다.'},
+ {id:'beer_shot',name:'맥주잔 원샷',desc:'누군가에게 맥주잔을 가득 따라줬다.'},
+ {id:'soju_only',name:'소주만 가득',desc:'소주만으로 병을 채웠다.'},
+ {id:'cider_party',name:'사이다 파티',desc:'사이다만으로 병을 채웠다.'},
+ {id:'blackout',name:'필름 끊김',desc:'내가 가장 많이 마셨다.'},
+ {id:'comrade',name:'전우애',desc:'동료가 가장 많이 마셔서 나를 유혹했다.',hidden:true},
+ {id:'narcissism',name:'나르시시즘',desc:'복소사 한 병을 혼자 다 마셨다.',hidden:true},
+ {id:'moon',name:'달이 떴다',desc:'달님을 미팅에서 만났다.',hidden:true},
+ {id:'talker',name:'입담꾼',desc:'대화에서 좋은 반응을 10번 얻었다.'},
+ {id:'nunchi',name:'눈치 백단',desc:'눈치 게임에서 이겼다.'},
+ {id:'traveler',name:'방랑자',desc:'모든 장소를 가 봤다.'},
+ {id:'first_rare',name:'귀한 손님',desc:'희귀하거나 특별한 상대를 처음 만났다.'},
+ ...CATS.map(([k,n])=>({id:'cat_'+k,name:n+' 도감 완성',desc:n+' 상대를 모두 동아리원으로 만들었다.'})),
+ {id:'full_house',name:'복소사 동아리 완성',desc:'모든 상대를 동아리원으로 만들었다.'}
+];
+
+const PRO=[
+ {av:'🪖',t:'강원도 어딘가, 생활관의 밤.\n점호가 끝나고 불이 꺼졌다.'},
+ {av:'🙋‍♂️',t:'스무 살 인생에 여자라곤 1도 없었다.\n모태솔로 20년차 일병, 그게 나다.'},
+ {av:'💭',t:'"미팅 한 번만 나가보고 싶다..."\n그렇게 중얼거리며 눈을 감았다.'},
+ {av:'🎖️',t:'꿈속에 얼마 전 전역한 최 병장이 나타났다.\n전투복 차림 그대로였다.'},
+ {av:'🎖️',t:'"야, 미팅 자리 하나 있다. 3대3이다.\n너 포함해서 셋 데리고 나와."'},
+ {av:'🎖️',t:'"상대가 누군지는 나도 모른다.\n사람일 수도 있고... 아닐 수도 있고."'},
+ {av:'🍶',t:'"명목은 동아리다. 복분자, 소주, 사이다.\n복소사를 맛있게 먹기 위한 동아리."'},
+ {av:'🌙',t:'꿈치고는 너무 생생했다.\n나는 같이 갈 동료를 찾기 시작했다.'}
+];
+
+/* ================= 저장 ================= */
+const KEY='boksosa_save_v1';
+function blank(){return{love:{},dates:{},coins:50,comp:{},opp:{},rec:{},ach:{},place:{},plays:0,pro:false,notes:{},talks:{},goodTalks:0,hints:{},clue:0}}
+function load(){try{const r=localStorage.getItem(KEY);if(r)return Object.assign(blank(),JSON.parse(r))}catch(e){}return blank()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(window.CLOUD&&CLOUD.user)CLOUD.push()}
+let S=load();
+
+/* ================= 유틸 ================= */
+const $=s=>document.querySelector(s);
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const byId=id=>COMP.find(c=>c.id===id)||OPP.find(o=>o.id===id);
+const nameOf=id=>id==='me'?'나':byId(id).name;
+const isComp=id=>COMP.some(c=>c.id===id);
+const has=cid=>!!(G&&G.party.includes(cid));
+const memberCount=()=>OPP.filter(o=>S.opp[o.id]==='member').length;
+function avHTML(x,cls='',sil=false,idAttr=''){const inner=x==='tank'?TANK:x;return `<span class="av ${cls}"><span ${idAttr} class="${sil?'sil':''}" style="display:grid;place-items:center;width:100%">${inner}</span></span>`}
+function avOf(id,cls=''){return id==='me'?avHTML('🙋‍♂️',cls):avHTML(byId(id).av,cls)}
+function josa(name,a,b){const c=name.charCodeAt(name.length-1);if(c<0xAC00||c>0xD7A3)return name+b;return name+(((c-0xAC00)%28)?a:b)}
+
+let G=null,MG={},timers=[],raf=0,toastT=0,dexTab='members',dexCat='human',resetArm=false;
+function clearT(){timers.forEach(t=>{clearTimeout(t);clearInterval(t)});timers=[];cancelAnimationFrame(raf)}
+const later=(ms,f)=>timers.push(setTimeout(f,ms));
+function screen(html){window.ON_HOME=false;clearT();const a=$('#app');a.innerHTML=html;a.classList.remove('enter');void a.offsetWidth;a.classList.add('enter');$('#coins').textContent=S.coins;window.scrollTo(0,0)}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2400)}
+function unlock(id){if(S.ach[id])return;S.ach[id]=true;save();toast('업적 달성: '+ACH.find(a=>a.id===id).name)}
+function addCoins(n){S.coins+=n;save();$('#coins').textContent=S.coins}
+function dq(t){return /^[("]/.test(t)?t:`"${t}"`}
+function talk(id,line){return `<div class="talk">${avOf(id,'sm')}<div class="bubble"><b>${nameOf(id)}</b>${line}</div></div>`}
+function bottleHTML(bt,cap,small){const seg=(n,c)=>n>0?`<div class="liq ${c}" style="height:${n/cap*100}%"></div>`:'';return `<div class="bottle${small?' sm':''}" aria-hidden="true"><div class="neck"></div><div class="body">${seg(bt.b,'lb')}${seg(bt.s,'ls')}${seg(bt.c,'lc')}</div></div>`}
+function pctBar(p){return `<div class="rec"><i style="width:${p[0]}%;background:var(--bok)"></i><i style="width:${p[1]}%;background:var(--sojuliq)"></i><i style="width:${p[2]}%;background:var(--cider)"></i></div>`}
+function noteHTML(id,n=3){const ns=(S.notes[id]||[]).slice(-n).reverse();if(!ns.length)return '<small class="k">아직 기록이 없다.</small>';return ns.map(x=>`<div class="note">${pctBar(x.p)}<small>"${x.l}"</small></div>`).join('')}
+function recBar(r){return `<div class="rec"><i style="width:${r[0]*10}%;background:var(--bok)"></i><i style="width:${r[1]*10}%;background:var(--sojuliq)"></i><i style="width:${r[2]*10}%;background:var(--cider)"></i></div>`}
+function curBottle(){const f=G.remaining/G.cap;return{b:G.bt.b*f,s:G.bt.s*f,c:G.bt.c*f}}
+function mixGradient(){const t=G.bt.b+G.bt.s+G.bt.c;const a=G.bt.b/t*100,b=a+G.bt.s/t*100;return `linear-gradient(to top,var(--bok) 0 ${a}%,var(--sojuliq) ${a}% ${b}%,var(--cider) ${b}% 100%)`}
+function tableTop(extra){return `<div class="tabletop">${bottleHTML(curBottle(),CAP,true)}${extra||''}</div>`}
+function burst(chars,n){for(let i=0;i<n;i++){const e=document.createElement('span');e.className='cf';e.textContent=pick(chars);e.style.left=rand(0,96)+'vw';e.style.animationDuration=(1.8+Math.random()*1.6)+'s';e.style.animationDelay=(Math.random()*.6)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),4200)}}
+
+/* ================= 홈 ================= */
+function accountHTML(){const C=window.CLOUD;
+  if(!C||C.off)return '';
+  if(!C.ready)return `<div class="ach acct">☁️ 계정 확인 중...</div>`;
+  if(C.user)return `<div class="ach acct">☁️ <b style="display:inline">${esc(C.user.displayName||'구글 계정')}</b> 계정에 저장 중<br><small class="k">${C.status||'폰을 바꿔도 도감이 유지된다.'}</small><button class="link" onclick="CLOUD.logout()">로그아웃</button></div>`;
+  return `<div class="ach acct">☁️ 로그인하면 폰을 바꾸거나 기록이 지워져도 도감이 유지된다.<button class="btn" style="margin-top:8px;font-size:16px;padding:10px" onclick="CLOUD.login()">구글로 로그인</button><small class="k">로그인 없이 하면 이 기기에만 저장된다.</small></div>`}
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const INAPP=/KAKAOTALK|Instagram|FBAN|FBAV|Line\/|NAVER\(inapp|everytimeApp|DaumApps/i.test(navigator.userAgent);
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+function home(){G=null;closeModal();screen(`${INAPP?`<div class="ach nudge" style="margin-bottom:14px">⚠️ 카카오톡 같은 앱 안에서 열면 기록이 사라지기 쉽다. 오른쪽 위 메뉴의 <b style="display:inline">다른 브라우저로 열기</b>로 Chrome이나 Safari에서 플레이하자. 구글 로그인도 앱 안에서는 막혀 있다.${/KAKAOTALK/i.test(navigator.userAgent)?`<button class="btn" style="margin-top:8px;font-size:15px;padding:10px" onclick="location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(location.href)">외부 브라우저로 열기</button>`:''}</div>`:''}
+<section class="hero">
+  ${bottleHTML({b:9,s:9,c:12},CAP)}
+  <h1 class="title">복소사<br>동아리</h1>
+</section>
+<p class="lede">복분자, 소주, 사이다를 맛있게 먹기 위한 동아리를 빙자한 3:3 랜덤 미팅.</p>
+${accountHTML()}
+<div class="stack">
+  <button class="btn" onclick="S.pro?recruit():prologue()">동아리원 모집</button>
+  ${loveIds().length?`<button class="btn ghost" onclick="loveList()">💞 연인 ${loveIds().filter(loveReady).length?`<small>만날 수 있음 ${loveIds().filter(loveReady).length}</small>`:`<small>${loveIds().length}명</small>`}</button>`:''}
+  <button class="btn ghost" disabled>동아리 MT <small>준비 중</small></button>
+  <button class="btn ghost" onclick="dex()">도감 보기 <small>동아리원 ${memberCount()}/${OPP.length}</small></button>
+</div>
+<div class="center" style="margin-top:12px"><button class="link" onclick="prologue()">프롤로그 다시 보기</button><p class="k" style="color:var(--muted);font-size:12px">v0.8</p></div>`);window.ON_HOME=true}
+
+/* ================= 프롤로그 ================= */
+let proI=0;
+function prologue(){proI=0;showPro()}
+function showPro(){const p=PRO[proI];screen(`
+<div class="pro" onclick="proTap()">
+  <div class="pro-av">${p.av}</div>
+  <p class="pro-t" id="pt"></p>
+  <div class="pro-dots">${PRO.map((_,i)=>`<i class="${i<=proI?'on':''}"></i>`).join('')}</div>
+  <p class="pro-hint">화면을 탭하면 넘어간다</p>
+</div>
+<div class="center"><button class="link" onclick="endPro()">건너뛰기</button></div>`);
+  const el=$('#pt');let i=0;MG={full:p.t,typing:true};
+  const iv=setInterval(()=>{i++;el.innerText=p.t.slice(0,i);if(i>=p.t.length){clearInterval(iv);MG.typing=false}},45);timers.push(iv);MG.iv=iv;
+}
+function proTap(){if(MG.typing){clearInterval(MG.iv);$('#pt').innerText=MG.full;MG.typing=false;return}proI++;if(proI>=PRO.length)endPro();else showPro()}
+function endPro(){S.pro=true;save();recruit()}
+
+/* ================= 1. 동료 모집 ================= */
+function newG(){return{party:[],opps:[],bt:{b:0,s:0,c:0},cap:0,remaining:0,drinks:{},last:null,sgtUsed:false,dist:{},sel:null,cup:2,chooseSel:[],placeUp:null,catUp:null,charm:{},roundNo:0,asked:[]}}
+function recruit(){
+  if(memberCount()>=OPP.length){screen(`<div class="center"><p class="big-msg">모든 상대가 동아리원이 됐다</p><p class="sub">동아리 MT 모드가 열리면 다시 만날 수 있다.</p><button class="btn" onclick="dex()">도감 보기</button></div>`);return}
+  G=newG();G.party=shuffle(COMP.map(c=>c.id)).slice(0,2);renderRecruit(true);
+}
+function compInner(c){return `<div class="card">${avHTML(c.av)}<div><b>${c.name}</b> <span class="k">${c.kind}</span><div class="k">${c.desc}</div><div class="perk">능력: ${c.perk}</div>${catOf(c.id)?`<div class="perk">${CATNAME[catOf(c.id)]} 상대가 자주 나온다</div>`:''}</div></div>`}
+function catOf(cid){return Object.keys(CAT_BOOST).find(k=>CAT_BOOST[k]===cid)}
+function renderRecruit(anim){
+  screen(`
+<h2 class="h">같이 갈 동료</h2>
+<p class="sub" id="rs">${anim?'누가 따라나설까...':'나를 뺀 두 자리는 랜덤으로 정해진다.'}</p>
+<div class="party">
+  <div class="card me">${avHTML('🙋‍♂️')}<div><b>나</b> <span class="k">모태솔로 20년차 일병</span><div class="k">복소사를 맛있게 먹으러 왔다. 진짜로.</div></div></div>
+  ${G.party.map((id,i)=>`<div class="flip ${anim?'':'open'}" id="f${i}"><div class="inner"><div class="face back"><span>?</span></div><div class="face front">${compInner(byId(id))}</div></div></div>`).join('')}
+</div>
+<div id="rtalk"></div>
+<div id="rbtn" class="${anim?'hide':''}">
+  <div class="row">
+    <button class="btn ghost" onclick="reroll()">다시 뽑기<br><small>10코인</small></button>
+    <button class="btn ghost" onclick="choose()">직접 고르기<br><small>40코인</small></button>
+  </div>
+  <button class="btn" onclick="prep()">이 멤버로 출발</button>
+</div>`);
+  if(!anim)return;
+  later(150,()=>{$('#f0').classList.add('shake');$('#f1').classList.add('shake')});
+  later(1000,()=>$('#f0').classList.add('open'));
+  later(1700,()=>$('#f1').classList.add('open'));
+  later(2400,()=>{const id=pick(G.party);$('#rtalk').innerHTML=talk(id,byId(id).join);$('#rs').textContent='나를 뺀 두 자리는 랜덤으로 정해진다.';$('#rbtn').classList.remove('hide');$('#rbtn').classList.add('pop')});
+}
+function reroll(){if(S.coins<10){toast('코인이 부족하다.');return}addCoins(-10);G.party=shuffle(COMP.map(c=>c.id)).slice(0,2);renderRecruit(true)}
+function choose(){if(S.coins<40){toast('코인이 부족하다.');return}G.chooseSel=[];renderChoose()}
+function renderChoose(){screen(`
+<h2 class="h">동료 직접 고르기</h2>
+<p class="sub">두 명을 고르면 40코인이 쓰인다.</p>
+<div class="choices">${COMP.map(c=>`<button class="pick" data-id="${c.id}" onclick="togChoose('${c.id}')">${avHTML(c.av,'sm')}<b>${c.name}</b><small>${c.perk}</small></button>`).join('')}</div>
+<button class="btn" id="cc" disabled onclick="confirmChoose()">이 둘로 확정</button>
+<div style="height:10px"></div>
+<button class="btn ghost" onclick="renderRecruit(false)">돌아가기</button>`)}
+function togChoose(id){const s=G.chooseSel;const i=s.indexOf(id);if(i>=0)s.splice(i,1);else{if(s.length>=2)s.shift();s.push(id)}
+  document.querySelectorAll('.pick[data-id]').forEach(b=>b.classList.toggle('on',s.includes(b.dataset.id)));$('#cc').disabled=s.length!==2}
+function confirmChoose(){addCoins(-40);G.party=[...G.chooseSel];renderRecruit(true)}
+
+/* ================= 출발 준비 (확률업) ================= */
+function prep(){G.party.forEach(id=>S.comp[id]=true);save();G.placeUp=null;G.catUp=null;screen(`
+<h2 class="h">출발 준비</h2>
+<p class="sub">코인을 쓰면 원하는 장소나 손님이 나올 확률이 오른다. 안 써도 된다.</p>
+<div class="label">장소 확률업 <small>${UP_COST}코인</small></div>
+<div class="choices">${PLACES.map(p=>`<button class="pick" data-pu="${p.id}" onclick="togUp('pu','${p.id}')"><span style="font-size:26px">${p.av}</span><b>${S.place[p.id]?p.name:'???'}</b><small>${p.boost?CATNAME[p.boost]+' 손님 많음':'손님 고르게'}</small></button>`).join('')}</div>
+<div class="label">손님 확률업 <small>${UP_COST}코인</small></div>
+<div class="choices" style="grid-template-columns:repeat(4,1fr)">${CATS.map(([k,n])=>`<button class="pick" data-cu="${k}" onclick="togUp('cu','${k}')"><b>${n}</b></button>`).join('')}</div>
+<button class="btn" id="pp" onclick="payPrep()">그냥 출발</button>`)}
+function togUp(t,v){const key=t==='pu'?'placeUp':'catUp';G[key]=G[key]===v?null:v;
+  document.querySelectorAll(`.pick[data-${t}]`).forEach(b=>b.classList.toggle('on',b.dataset[t]===G[key]));
+  const cost=(G.placeUp?UP_COST:0)+(G.catUp?UP_COST:0);$('#pp').textContent=cost?`${cost}코인 쓰고 출발`:'그냥 출발'}
+function payPrep(){const cost=(G.placeUp?UP_COST:0)+(G.catUp?UP_COST:0);if(cost>S.coins){toast('코인이 부족하다.');return}if(cost)addCoins(-cost);toPlace()}
+function pickPlace(){const ws=PLACES.map(p=>p.id===G.placeUp?4:1);let r=Math.random()*ws.reduce((a,b)=>a+b,0),i=0;for(;i<ws.length;i++){r-=ws[i];if(r<=0)break}return PLACES[Math.min(i,PLACES.length-1)]}
+
+/* ================= 2. 장소 ================= */
+function toPlace(){
+  G.party.forEach(id=>S.comp[id]=true);
+  const p=pickPlace();G.place=p.id;S.place[p.id]=true;save();if(PLACES.every(x=>S.place[x.id]))unlock('traveler');
+  screen(`
+<h2 class="h">오늘의 장소</h2>
+<p class="sub">천막을 걷어본다.</p>
+<div class="stage" id="stg">
+  <div><div class="stage-av">${p.av}</div><b class="stage-name">${p.name}</b><p class="k" style="color:var(--muted)">${p.desc}</p><p class="perk" style="color:var(--soju);margin-top:6px">${p.boost?CATNAME[p.boost]+' 손님이 자주 온다':'온갖 손님이 고르게 온다'}</p></div>
+  <div class="cur l"></div><div class="cur r"></div>
+</div>
+<button class="btn hide" id="go" onclick="meet()">안으로 들어간다</button>`);
+  later(500,()=>$('#stg').classList.add('open'));
+  later(1600,()=>{$('#go').classList.remove('hide');$('#go').classList.add('pop')});
+}
+
+/* ================= 미팅 상대 등장 ================= */
+const placeOf=()=>PLACES.find(p=>p.id===G.place);
+function pickOpps(){
+  let pool=OPP.filter(o=>S.opp[o.id]!=='member').map(o=>({o,w:o.w*(has(CAT_BOOST[o.cat])?3:1)*(placeOf()&&placeOf().boost===o.cat?2:1)*(G.catUp===o.cat?3:1)+(o.cond&&has(o.cond.comp)?o.cond.bonus:0)})).filter(x=>x.w>0);
+  const out=[];
+  while(out.length<3&&pool.length){const sum=pool.reduce((a,x)=>a+x.w,0);let r=Math.random()*sum,i=0;for(;i<pool.length;i++){r-=pool[i].w;if(r<=0)break}i=Math.min(i,pool.length-1);out.push(pool[i].o.id);pool.splice(i,1)}
+  return out;
+}
+function meet(){
+  G.opps=pickOpps();
+  if(!G.opps.length){screen(`<div class="center"><p class="big-msg">천막 안이 텅 비었다</p><p class="sub">지금 동료 조합으로는 나올 상대가 없다. 다른 동료를 데려와 보자.</p><button class="btn" onclick="recruit()">다시 모집하기</button></div>`);return}
+  G.opps.forEach(id=>{if(S.opp[id]!=='member')S.opp[id]='seen'});
+  save();
+  const lead=G.opps[0];
+  screen(`
+<h2 class="h" id="mh">누군가 천막을 걷고 들어온다</h2>
+<p class="sub" id="ms">두근두근...</p>
+<div class="party">${G.opps.map((id,i)=>{const o=byId(id);return `<div class="card hide" id="op${i}">${avHTML(o.av,'',true,`id="oa${i}"`)}<div><b id="on${i}">???</b> <span class="k" id="ok${i}"></span></div></div>`}).join('')}</div>
+<div id="mend" class="hide">${talk(lead,pick(byId(lead).lines))}<div style="height:8px"></div><button class="btn" onclick="renderMix()">복소사 만들기</button></div>
+<div class="center" id="mskip"><button class="link" onclick="meetAll()">건너뛰기</button></div>`);
+  G.opps.forEach((id,i)=>{later(600+i*1500,()=>showOp(i));later(1350+i*1500,()=>revealOp(i))});
+  later(600+G.opps.length*1500,meetDone);
+}
+function showOp(i){const c=$('#op'+i);if(!c.classList.contains('hide'))return;c.classList.remove('hide');c.classList.add('pop')}
+function revealOp(i){const a=$('#oa'+i);if(!a.classList.contains('sil'))return;const o=byId(G.opps[i]);a.classList.remove('sil');
+  const n=$('#on'+i);n.textContent=o.name;n.classList.add('stamp');$('#ok'+i).textContent=o.kind+' ('+CATNAME[o.cat]+')';
+  if(o.cond||o.rare){$('#op'+i).classList.add('rare');toast(o.rare?'희귀한 손님이 나타났다!':'특별한 손님이 나타났다!');unlock('first_rare')}
+  if(o.id==='moon')unlock('moon')}
+function meetDone(){$('#mh').textContent='3:3 미팅 시작';$('#ms').textContent='오늘 맞은편에 앉은 상대들.';$('#mend').classList.remove('hide');$('#mend').classList.add('pop');$('#mskip').remove()}
+function meetAll(){clearT();G.opps.forEach((_,i)=>{showOp(i);revealOp(i)});meetDone()}
+
+/* ================= 3. 복소사 제조 ================= */
+const ING=[['b','복분자','var(--bok)'],['s','소주','var(--sojuliq)'],['c','사이다','var(--cider)']];
+function renderMix(){G.bt={b:0,s:0,c:0};screen(`
+<h2 class="h">복소사 한 병</h2>
+<p class="sub">원하는 만큼 붓는다. 한 가지만 넣어도 된다. 상대의 취향을 떠올려 보자.</p>
+<div class="mix">
+  <div id="mb">${bottleHTML(G.bt,CAP)}</div>
+  <div>
+    ${ING.map(([k,n,col])=>`<div class="ing"><span><i class="dot" style="background:${col}"></i>${n}</span>
+      <button class="step" aria-label="${n} 덜기" onclick="adj('${k}',-1)">−</button>
+      <button class="step pour" aria-label="${n} 붓기" onclick="adj('${k}',1)">+</button></div>`).join('')}
+    <div id="mratio" class="mratio"></div>
+    <p class="mstate" id="mst"></p>
+  </div>
+</div>
+<button class="btn" id="mixgo" onclick="mixDone()">이 비율로 섞는다</button>
+<div id="mextra">${mixNotes()}${shopHTML()}</div>`);updateMix(false)}
+function refreshMix(){$('#mextra').innerHTML=mixNotes()+shopHTML()}
+function recText(r){return `복분자 ${r[0]} : 소주 ${r[1]} : 사이다 ${r[2]}`}
+function hintHTML(id){return (S.hints[id]||[]).map(h=>`<small class="hintline">💡 ${h}</small>`).join('')}
+function mixNotes(){const rows=G.opps.map(id=>{const o=byId(id),k=S.rec[id];
+  return `<div class="ach" style="margin-bottom:8px"><div style="display:flex;gap:8px;align-items:center">${avOf(id,'sm')}<b>${o.name}</b>${k?'<small style="color:var(--soju)">레시피 앎</small>':''}</div>${k?`<div class="note">${recBar(o.r)}<small>${recText(o.r)}</small></div>`:hintHTML(id)+noteHTML(id)}</div>`}).join('');
+  return `<div class="label" style="margin-top:22px">레시피 노트</div><p class="sub" style="margin-bottom:8px">오늘 상대들의 힌트와 지난번에 섞었던 비율.</p>${rows}`}
+
+/* ---------- 레시피 추리 (코인) ---------- */
+const INGN=['복분자','소주','사이다'];
+function amountWord(v){return v===0?'아예 안 넣는':v<=2?'조금만 넣는':v<=4?'적당히 넣는':v<=6?'절반쯤 넣는':v<=9?'잔뜩 넣는':'그것만 넣는'}
+function makeHints(o){const r=o.r,mx=Math.max(...r),mn=Math.min(...r),hs=[];
+  r.forEach((v,i)=>{if(v===mx)hs.push(`${INGN[i]}를 가장 좋아하는 것 같다.`)});
+  r.forEach((v,i)=>{if(v===mn)hs.push(v===0?`${INGN[i]}는 아예 안 넣는 게 좋겠다.`:`${INGN[i]}는 별로 안 좋아하는 것 같다.`)});
+  r.forEach((v,i)=>hs.push(`${INGN[i]}는 ${amountWord(v)} 편이 좋아 보인다.`));
+  return [...new Set(hs)]}
+function newHints(id){const have=S.hints[id]||[];return makeHints(byId(id)).filter(h=>!have.includes(h))}
+function shopHTML(){const unk=G.opps.filter(id=>!S.rec[id]);const n=Math.min(S.clue||0,CLUE_MAX),free=n>=CLUE_MAX;
+  return `<div class="label" style="margin-top:18px">레시피 추리</div>
+<p class="sub" style="margin-bottom:8px">코인으로 오늘 상대의 취향을 알아낸다. 힌트나 유추를 ${CLUE_MAX}번 하면 확정 공개 1회가 무료.</p>
+<div class="clue">${Array.from({length:CLUE_MAX},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')}<span>${free?'확정 공개 무료!':`무료까지 ${CLUE_MAX-n}번`}</span></div>
+<div class="row" style="grid-template-columns:1fr 1fr 1fr">
+  <button class="btn ghost" ${unk.length?'':'disabled'} onclick="buyHint()">힌트<br><small>${HINT_COST}코인</small></button>
+  <button class="btn ghost" ${unk.length?'':'disabled'} onclick="buyGuess()">랜덤 유추<br><small>${GUESS_COST}코인</small></button>
+  <button class="btn ghost" ${unk.length?'':'disabled'} onclick="pickReveal()">확정 공개<br><small>${free?'무료':REVEAL_COST+'코인'}</small></button>
+</div>
+<div id="rvpick"></div>
+${unk.length?'':'<p class="sub">오늘 상대들의 레시피는 모두 알고 있다.</p>'}`}
+function payFor(cost){if(S.coins<cost){toast('코인이 부족하다.');return false}addCoins(-cost);return true}
+function addClue(){S.clue=Math.min(CLUE_MAX,(S.clue||0)+1)}
+function revealRec(id){S.rec[id]=true;save();toast(`${nameOf(id)}의 레시피를 알아냈다!`);refreshMix()}
+function buyHint(){const cand=G.opps.filter(id=>!S.rec[id]&&newHints(id).length);
+  if(!cand.length){toast('더 알아낼 힌트가 없다. 유추나 확정 공개를 써보자.');return}
+  if(!payFor(HINT_COST))return;const id=pick(cand),h=pick(newHints(id));(S.hints[id]=S.hints[id]||[]).push(h);addClue();save();
+  toast(`${nameOf(id)}: ${h}`);refreshMix()}
+function buyGuess(){const cand=G.opps.filter(id=>!S.rec[id]);if(!cand.length)return;if(!payFor(GUESS_COST))return;addClue();revealRec(pick(cand))}
+function pickReveal(){const cand=G.opps.filter(id=>!S.rec[id]);if(!cand.length)return;const free=(S.clue||0)>=CLUE_MAX;
+  $('#rvpick').innerHTML=`<p class="sub" style="margin:4px 0 6px">누구의 레시피를 공개할까? ${free?'(무료)':`(${REVEAL_COST}코인)`}</p><div class="choices">${cand.map(id=>`<button class="pick" onclick="doReveal('${id}')">${avOf(id,'sm')}<b>${nameOf(id)}</b></button>`).join('')}</div>`}
+function doReveal(id){if((S.clue||0)>=CLUE_MAX){S.clue=0}else if(!payFor(REVEAL_COST))return;revealRec(id)}
+function adj(k,d){const t=G.bt.b+G.bt.s+G.bt.c;if(d>0&&t>=CAP){toast('병이 가득 찼다.');return}if(d<0&&G.bt[k]<=0)return;G.bt[k]+=d;updateMix(true)}
+function updateMix(wob){const t=G.bt.b+G.bt.s+G.bt.c;$('#mb').innerHTML=bottleHTML(G.bt,CAP);if(wob)$('#mb .bottle').classList.add('wob');
+  $('#mixgo').disabled=t<MIN;
+  $('#mratio').innerHTML=t?`${pctBar([G.bt.b,G.bt.s,G.bt.c].map(x=>x/t*100))}<small>${recText([G.bt.b,G.bt.s,G.bt.c].map(x=>Math.round(x*10/t)))} <span class="k">(10 기준)</span></small>`:'';
+  $('#mst').textContent=t===0?'병이 비어 있다.':t<MIN?'아직 병이 휑하다. 좀 더 부어야 한다.':t>=CAP?'병이 가득 찼다.':'이대로 섞어도 되고, 더 부어도 된다.'}
+function react(o){
+  const t=G.bt.b+G.bt.s+G.bt.c;const mine=[G.bt.b,G.bt.s,G.bt.c].map(x=>x*10/t);
+  const diff=mine.map((x,i)=>x-o.r[i]);const hit=mine.every((x,i)=>Math.round(x)===o.r[i]);const d=hit?0:diff.reduce((a,x)=>a+Math.abs(x),0);
+  G.dist[o.id]=d;
+  if(d<0.01)return{d,line:'이거예요. 제 인생 복소사.'};
+  if(d<=2)return{d,line:'오, 거의 제 취향인데요? 살짝만 다르게.'};
+  let mi=0;diff.forEach((x,i)=>{if(Math.abs(x)>Math.abs(diff[mi]))mi=i});
+  const L=[['복분자가 너무 진해요.','복분자 향이 좀 아쉬워요.'],['으, 너무 독해요.','소주는 어디 갔어요?'],['사이다 맛밖에 안 나요.','좀 더 톡 쏘면 좋겠는데.']];
+  return{d,line:(d>8?'음... ':'')+L[mi][diff[mi]>0?0:1]};
+}
+function mixDone(){
+  const {b,s,c}=G.bt,t=b+s+c;
+  if(s>0&&!b&&!c)unlock('soju_only');
+  if(c>0&&!b&&!s)unlock('cider_party');
+  G.cap=t;G.remaining=t;
+  ['me',...G.party,...G.opps].forEach(id=>G.drinks[id]=0);
+  const found=[];
+  const pc=[b,s,c].map(x=>Math.round(x/t*100));
+  const lines=G.opps.map((id,i)=>{const o=byId(id);const r=react(o);(S.notes[id]=S.notes[id]||[]).push({p:pc,l:r.line});S.notes[id]=S.notes[id].slice(-5);if(r.d<0.01&&!S.rec[id]){S.rec[id]=true;found.push(o.name)}return `<div class="late" style="--d:${.3+i*.6}s">${talk(id,r.line)}</div>`}).join('');
+  const mine=[b,s,c].map(x=>Math.round(x*10/t));const past=[];
+  OPP.forEach(o=>{if(S.opp[o.id]&&!S.rec[o.id]&&!G.opps.includes(o.id)&&o.r.every((v,i)=>v===mine[i])){S.rec[o.id]=true;past.push(S.opp[o.id]==='member'?o.name:'???')}});
+  if(past.length){found.push(...past);later(300+G.opps.length*600+1200,()=>toast(`지난번에 만난 ${past.length}명의 레시피와 일치해서 도감에 등록했다!`))}
+  save();
+  if(found.length){later(300+G.opps.length*600,()=>{unlock('perfect');toast(found.join(', ')+'의 레시피 발견!')})}
+  screen(`
+<h2 class="h">한 모금씩 맛을 봤다</h2>
+<p class="sub">반응을 잘 기억해 두자. 취향에 가까울수록 나중에 마음을 얻기 쉬워진다.</p>
+${lines}
+<div class="late" style="--d:${.3+G.opps.length*.6}s;margin-top:12px"><button class="btn" onclick="round()">건배!</button></div>`)}
+
+/* ================= 4. 미니게임 ================= */
+const GNAME={'369':'3·6·9!','cap':'병뚜껑 꼬리치기!','updown':'업다운!','nunchi':'눈치 게임!','order':'주문 받기!'};
+function round(){
+  const games={'369':g369,'cap':gCap,'updown':gUpDown,'nunchi':gNunchi,'order':gOrder};
+  const g=pick(Object.keys(games).filter(x=>x!==G.last));G.last=g;G.roundNo++;
+  const who=pick(G.opps);G.intro=talk(who,pick(byId(who).lines));
+  if(G.roundNo>1&&Math.random()<.45&&G.asked.length<TALKQ.length){chatEvent(g);return}
+  startGame(g);
+}
+function startGame(g){
+  const games={'369':g369,'cap':gCap,'updown':gUpDown,'nunchi':gNunchi,'order':gOrder};
+  screen(`${tableTop(G.intro)}<div class="banner">${GNAME[g]}</div>`);
+  later(1300,()=>games[g]());
+}
+
+/* ---------- 입담 이벤트 ---------- */
+const TALKQ=[
+ {id:'q1',q:'제 첫인상 어땠어요?',a:['눈부셨어요.','솔직히 좀 무서웠어요.','기억이 잘 안 나요.']},
+ {id:'q2',q:'주말엔 보통 뭐 해요?',a:['잠만 자요.','운동해요.','복소사 비율 연구해요.']},
+ {id:'q3',q:'군대 얘기 좀 해줘요.',a:['축구 얘기 해도 돼요?','그건 군사기밀입니다.','저 지금도 군인인데요.']},
+ {id:'q4',q:'이상형이 뭐예요?',a:['지금 제 앞에 계신 분.','복소사 잘 마는 사람.','아직 잘 모르겠어요.']},
+ {id:'q5',q:'제 이름 기억나요?',a:['당연하죠.','...힌트 좀 주세요.','이름보다 얼굴이 기억나요.']},
+ {id:'q6',q:'노래방 가면 뭐 불러요?',a:['발라드요.','트로트요.','탬버린 담당이에요.']},
+ {id:'q7',q:'안주는 뭐가 제일 좋아요?',a:['어묵탕이요.','과일이요.','안주는 사치예요.']},
+ {id:'q8',q:'첫 데이트는 어디가 좋아요?',a:['놀이공원이요.','조용한 카페요.','여기 같은 포차요.']}
+];
+function hsh(str){let h=7;for(const ch of str)h=(h*31+ch.charCodeAt(0))>>>0;return h}
+function chatEvent(g){
+  const who=pick(G.opps);const q=pick(TALKQ.filter(x=>!G.asked.includes(x.id)));G.asked.push(q.id);G.chat={who,q,g};
+  const past=(S.talks[who]||{})[q.id];
+  screen(`${tableTop()}<p class="big-msg">${josa(nameOf(who),'이','가')} 말을 건다</p>
+${talk(who,q.q)}
+<div class="stack" style="margin-top:12px">${q.a.map((a,i)=>`<button class="btn ghost" onclick="answer(${i})">${a}${past&&past.a===i?`<br><small>지난번: ${past.res>0?'좋아했다':past.res<0?'별로였다':'무난했다'}</small>`:''}</button>`).join('')}</div>`)}
+function answer(i){
+  const {who,q,g}=G.chat;const best=hsh(who+q.id)%3,bad=(best+1)%3;const res=i===best?1:i===bad?-1:0;
+  G.charm[who]=(G.charm[who]||0)+res;S.talks[who]=S.talks[who]||{};S.talks[who][q.id]={a:i,res};
+  if(res>0){S.goodTalks=(S.goodTalks||0)+1;if(S.goodTalks>=10)unlock('talker')}save();
+  const line=pick(res>0?['헉, 그 대답 좋다.','(눈이 반짝였다.)','역시, 말이 통하네요.']:res<0?['...아, 네.','(표정이 살짝 굳었다.)','그건 좀...']:['아, 그렇구나.','음, 무난하네요.','(고개를 끄덕였다.)']);
+  screen(`${tableTop()}<p class="big-msg">${res>0?'분위기가 좋아졌다':res<0?'분위기가 싸해졌다':'무난하게 넘어갔다'}</p>
+<p class="sub">나: ${q.a[i]}</p>${talk(who,line)}<div style="height:10px"></div><button class="btn" onclick="startGame('${g}')">게임 시작</button>`)}
+
+/* ---------- 눈치 게임 ---------- */
+function gNunchi(){
+  const npcs=shuffle([...G.party,...G.opps]);let t=rand(80,600);
+  const calls=npcs.map((id,k)=>{if(k)t+=rand(600,1200);return{id,t}});
+  MG={calls,win:has('beeper')?170:320,count:0,over:false,start:0,on:false};
+  screen(`${tableTop(G.intro)}
+<div class="game"><div class="gname">눈치 게임</div><div class="rule">신호가 나오면 다들 숫자를 외친다. 누군가와 동시에 외치거나 꼴찌가 되면 실패.${has('beeper')?' (삐삐 덕에 판정 여유)':''}</div>
+<div class="hist" id="nlog" style="min-height:64px"></div>
+<button class="btn" id="nb" disabled onclick="nCall()">준비...</button></div>`);
+  later(1200,()=>{MG.on=true;MG.start=performance.now();const b=$('#nb');b.disabled=false;b.textContent='1!';
+    calls.forEach(c=>later(c.t,()=>{if(MG.over)return;MG.count++;$('#nlog').insertAdjacentHTML('beforeend',`<span class="chip">${MG.count} ${nameOf(c.id)}</span>`);$('#nb').textContent=(MG.count+1)+'!';
+      if(MG.count>=calls.length){MG.over=true;later(500,()=>gameEnd(false,'끝까지 눈치만 보다 꼴찌가 됐다.'))}}))});
+}
+function nCall(){if(MG.over||!MG.on)return;const p=performance.now()-MG.start;const hit=MG.calls.find(c=>Math.abs(c.t-p)<MG.win);MG.over=true;
+  if(hit){$('#nlog').insertAdjacentHTML('beforeend',`<span class="chip">${MG.count+1} 나 + ${nameOf(hit.id)}</span>`);later(600,()=>gameEnd(false,`${josa(nameOf(hit.id),'과','와')} 동시에 외쳤다.`));return}
+  $('#nlog').insertAdjacentHTML('beforeend',`<span class="chip" style="border-color:var(--soju)">${MG.count+1} 나</span>`);unlock('nunchi');later(600,()=>gameEnd(true,`${MG.count+1}번을 무사히 외쳤다.`))}
+
+/* ---------- 주문 받기 ---------- */
+const ORD=[['🍒','복분자'],['🍶','소주'],['🥤','사이다'],['🍢','어묵']];
+function gOrder(){
+  const len=has('jangrong')?4:5;const seq=Array.from({length:len},()=>rand(0,3));MG={seq,i:0,ready:false,over:false};
+  screen(`${tableTop(G.intro)}
+<div class="game"><div class="gname">주문 받기</div><div class="rule">사장님이 부르는 주문 ${len}개를 순서대로 눌러라.${has('jangrong')?' (장롱 덕에 하나 줄었다)':''}</div>
+<div class="num" id="os" style="font-size:72px;min-height:1.2em"></div><p class="sub" id="ot">잘 들어라...</p>
+<div class="choices" style="grid-template-columns:repeat(4,1fr)">${ORD.map((o,i)=>`<button class="pick" disabled data-o="${i}" onclick="oPress(${i})"><span style="font-size:28px">${o[0]}</span><small>${o[1]}</small></button>`).join('')}</div></div>`);
+  seq.forEach((v,k)=>{later(700+k*900,()=>{const e=$('#os');e.textContent=ORD[v][0];e.classList.remove('bump');void e.offsetWidth;e.classList.add('bump')});later(700+k*900+650,()=>{$('#os').textContent=''})});
+  later(700+len*900,()=>{MG.ready=true;$('#ot').textContent='이제 순서대로!';document.querySelectorAll('.pick[data-o]').forEach(b=>b.disabled=false)});
+}
+function oPress(i){if(!MG.ready||MG.over)return;$('#os').textContent=ORD[i][0];
+  if(MG.seq[MG.i]!==i){MG.over=true;later(500,()=>gameEnd(false,`${MG.i+1}번째 주문이 틀렸다. 정답은 ${ORD[MG.seq[MG.i]][1]}.`));return}
+  MG.i++;$('#ot').textContent=`${MG.i} / ${MG.seq.length}`;if(MG.i>=MG.seq.length){MG.over=true;later(500,()=>gameEnd(true,'주문을 완벽하게 받았다!'))}}
+function g369(){
+  const t=has('cat')?2300:1600;MG={n:rand(1,24),left:6,t};
+  screen(`${tableTop(G.intro)}
+<div class="game"><div class="gname">3·6·9</div><div class="rule">숫자에 3, 6, 9가 있으면 짝! 없으면 통과. 6번 연속 맞히면 성공.${has('cat')?' (치즈 덕에 시간 여유)':''}</div>
+<div class="num" id="n"></div><div class="tbar"><i id="tb"></i></div>
+<div class="row" style="margin:0"><button class="btn" onclick="a369(true)">짝!</button><button class="btn ghost" onclick="a369(false)">통과</button></div>
+<p class="sub" id="lf" style="margin:12px 0 0"></p></div>`);
+  next369();
+}
+function next369(){
+  clearT();const n=$('#n');n.textContent=MG.n;n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump');$('#lf').textContent=`남은 숫자 ${MG.left}개`;
+  const tb=$('#tb');tb.style.transition='none';tb.style.width='100%';void tb.offsetWidth;tb.style.transition=`width ${MG.t}ms linear`;tb.style.width='0%';
+  later(MG.t,()=>gameEnd(false,`${MG.n}에서 머뭇거렸다.`));
+}
+function a369(clap){
+  if(MG.over)return;const ok=/[369]/.test(String(MG.n));
+  if(clap!==ok){MG.over=true;gameEnd(false,`${MG.n}에서 ${clap?'짝을 쳐버렸다':'짝을 놓쳤다'}.`);return}
+  MG.n++;MG.left--;if(MG.left<=0){MG.over=true;gameEnd(true,'6연속 성공!');return}next369();
+}
+function gCap(){
+  const zw=has('tank')?26:15,zl=rand(8,92-zw);MG={zw,zl,pos:0,stop:false,start:performance.now()};
+  screen(`${tableTop(G.intro)}
+<div class="game"><div class="gname">병뚜껑 꼬리치기</div><div class="rule">움직이는 막대가 초록 칸에 있을 때 튕기면 성공. 기회는 한 번.${has('tank')?' (흑표 덕에 칸이 넓다)':''}</div>
+<div class="track"><div class="zone" style="left:${zl}%;width:${zw}%"></div><div class="needle" id="nd"></div></div>
+<button class="btn" id="flick" onclick="flick()">튕긴다!</button></div>`);
+  const loop=now=>{if(MG.stop)return;const p=((now-MG.start)/1100)%2;MG.pos=(p<1?p:2-p)*100;$('#nd').style.left=MG.pos+'%';raf=requestAnimationFrame(loop)};
+  raf=requestAnimationFrame(loop);
+}
+function flick(){
+  if(MG.stop)return;MG.stop=true;cancelAnimationFrame(raf);$('#flick').disabled=true;
+  const hit=MG.pos>=MG.zl&&MG.pos<=MG.zl+MG.zw;
+  later(700,()=>gameEnd(hit,hit?'꼬리가 깔끔하게 날아갔다!':'헛손질. 뚜껑 꼬리가 멀쩡하다.'));
+}
+function gUpDown(){
+  MG={ans:rand(1,50),tries:has('worm')?6:5,hist:[]};
+  screen(`${tableTop(G.intro)}
+<div class="game"><div class="gname">업다운</div><div class="rule">1부터 50 사이 숫자를 맞혀라.${has('worm')?' (꿈틀이 덕에 기회 +1)':''}</div>
+<div class="num" id="tries" style="font-size:40px">${MG.tries}번 남음</div>
+<div class="ud"><input id="ud" type="number" inputmode="numeric" min="1" max="50" placeholder="숫자" onkeydown="if(event.key==='Enter')udGuess()"><button class="btn" style="width:auto;padding:0 20px" onclick="udGuess()">부른다</button></div>
+<div class="hist" id="hist"></div></div>`);
+}
+function udGuess(){
+  if(MG.over)return;const inp=$('#ud');const v=parseInt(inp.value,10);if(!(v>=1&&v<=50)){toast('1에서 50 사이로 불러야 한다.');return}
+  inp.value='';MG.tries--;
+  if(v===MG.ans){MG.over=true;gameEnd(true,`정답은 ${v}!`);return}
+  MG.hist.push(`<span class="chip">${v} ${v<MG.ans?'업':'다운'}</span>`);$('#hist').innerHTML=MG.hist.join('');
+  $('#tries').textContent=MG.tries+'번 남음';
+  if(MG.tries<=0){MG.over=true;gameEnd(false,`기회를 다 썼다. 정답은 ${MG.ans}.`)}
+}
+function gameEnd(win,msg){
+  clearT();
+  if(!win){
+    let who='me';if(has('sgt')&&!G.sgtUsed){who='sgt';G.sgtUsed=true}else if(has('nureong')&&Math.random()<.35)who='nureong';
+    const amt=Math.min(PENALTY,G.remaining);G.drinks[who]+=amt;G.remaining-=amt;
+    pourScreen('실패!',msg+' '+(who==='me'?'벌칙으로 소주잔 한 잔.':who==='sgt'?'최 병장이 "내가 마신다" 하며 벌주를 가로챘다.':'누렁이가 벌주를 할짝할짝 핥아 먹었다.'),who==='me'?'"...쓰다."':dq(byId(who).drink),who);
+    return;
+  }
+  G.sel=null;G.cup=2;
+  const ids=[...G.party,...G.opps];
+  screen(`${tableTop()}
+<p class="big-msg">성공!</p><p class="sub">${msg} 한 잔 먹일 사람과 잔을 고른다.</p>
+<div class="label">누구에게</div>
+<div class="choices">${ids.map(id=>`<button class="pick" data-t="${id}" onclick="selT('${id}')">${avOf(id,'sm')}<b>${nameOf(id)}</b><small>${isComp(id)?'동료':'상대'}</small></button>`).join('')}</div>
+<div class="label">어떤 잔으로</div>
+<div class="choices" style="grid-template-columns:repeat(3,1fr)">${CUPS.map(c=>`<button class="pick ${G.cup===c.amt?'on':''}" data-c="${c.amt}" onclick="selC(${c.amt})"><span style="font-size:28px">${c.icon}</span><b>${c.name}</b></button>`).join('')}</div>
+<button class="btn" id="gv" disabled onclick="give()">따라준다</button>`);
+}
+function selT(id){G.sel=id;document.querySelectorAll('.pick[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===id));$('#gv').disabled=false}
+function selC(a){G.cup=a;document.querySelectorAll('.pick[data-c]').forEach(b=>b.classList.toggle('on',+b.dataset.c===a))}
+function give(){
+  const id=G.sel,cup=CUPS.find(c=>c.amt===G.cup),amt=Math.min(cup.amt,G.remaining);
+  G.drinks[id]+=amt;G.remaining-=amt;
+  if(cup.amt===5&&amt===5)unlock('beer_shot');
+  pourScreen(cup.icon+' 한 잔 받아라',`${josa(nameOf(id),'이','가')} ${cup.name}을 비웠다.`,dq(byId(id).drink),id);
+}
+function pourScreen(title,msg,line,id){
+  const last=G.remaining<=0;
+  screen(`${tableTop()}
+<p class="big-msg">${title}</p><p class="sub">${msg}</p>
+<div class="glass"><div class="fill" style="background:${mixGradient()}"></div></div>
+<div class="oneshot">원샷!</div>
+<div class="late">${talk(id,line)}</div>
+<div class="late" style="--d:1.6s;margin-top:8px"><button class="btn" onclick="${last?'finale()':'round()'}">${last?'어, 병이 비었다':'다음 게임'}</button></div>`)}
+
+/* ================= 5. 2차 ================= */
+function finale(){
+  const order=[...G.opps,...G.party,'me'];const mx=Math.max(...order.map(i=>G.drinks[i]));const top=order.find(i=>G.drinks[i]===mx);
+  const ids=['me',...G.party,...G.opps];
+  let body,btn;
+  if(G.drinks.me===G.cap){unlock('narcissism');addCoins(5);body=`<p class="big-msg">혼자 한 병을 다 비웠다</p><p class="sub">거울 속 내가 너무 멋있어 보인다. 오늘 밤은 나와 보내기로 했다.</p>`;btn=endButtons('+5코인')}
+  else if(top==='me'){unlock('blackout');addCoins(5);body=`<p class="big-msg">가장 많이 마신 건 나였다</p><p class="sub">필름이 끊겼다. 눈을 뜨니 생활관 천장이었다.</p>`;btn=endButtons('+5코인')}
+  else if(isComp(top)){unlock('comrade');addCoins(10);body=`<p class="big-msg">${josa(nameOf(top),'이','가')} 다가온다</p>${talk(top,dq(byId(top).drink))}<p class="sub">가장 많이 마신 건 동료였다. 전우애가 싹텄다. 이건 이것대로 괜찮을지도.</p>`;btn=endButtons('+10코인')}
+  else{body=`<p class="big-msg">${josa(nameOf(top),'이','가')} 나를 본다</p>${talk(top,'...저기, 우리 2차 갈래요?')}`;btn=`<button class="btn" onclick="date2('${top}')">2차 가자</button>`}
+  screen(`<h2 class="h">복소사가 바닥났다</h2><p class="sub">누가 제일 많이 마셨을까.</p>
+<div class="score">${ids.map(id=>`<div class="srow ${id===top?'top':''}">${avOf(id,'sm')}<span>${nameOf(id)}</span><div class="m"><i data-w="${G.drinks[id]/Math.max(1,mx)*100}"></i></div></div>`).join('')}</div>
+<div class="late" style="--d:1.4s">${body}<div style="height:10px"></div>${btn}</div>`);
+  later(80,()=>document.querySelectorAll('.srow .m i').forEach(i=>i.style.width=i.dataset.w+'%'));
+}
+const DATE_GOAL=65;
+const DATE_PLACES=[
+ {id:'karaoke',name:'코인노래방',av:'🎤'},{id:'walk',name:'강변 산책',av:'🌙'},
+ {id:'cvs',name:'편의점 앞 테이블',av:'🏪'},{id:'photo',name:'즉석 사진관',av:'📸'}];
+const DATEQ=[
+ {id:'d1',q:'요즘 제일 고민이 뭐예요?',a:['전역하고 뭐 할지요.','솔직히 연애요.','고민 같은 거 안 해요.']},
+ {id:'d2',q:'복소사 동아리엔 왜 들어왔어요?',a:['사람 만나고 싶어서요.','복소사가 진짜 맛있어서요.','꿈에서 선임이 시켜서요.']},
+ {id:'d3',q:'힘들 땐 어떻게 풀어요?',a:['혼자 조용히 걸어요.','친구들 불러서 떠들어요.','그냥 푹 자요.']},
+ {id:'d4',q:'연락은 자주 하는 편이에요?',a:['하루 종일 해요.','용건 있을 때만요.','답장은 느려도 꼭 해요.']},
+ {id:'d5',q:'쉬는 날엔 뭐 하고 싶어요?',a:['집에서 푹 쉬기.','무작정 여행 가기.','새로운 거 배우기.']},
+ {id:'d6',q:'5년 뒤엔 뭐 하고 있을 것 같아요?',a:['하고 싶은 일 하고 있겠죠.','아직 잘 모르겠어요.','지금처럼 복소사 마시고 있겠죠.']},
+ {id:'d7',q:'처음 만나면 뭘 제일 먼저 봐요?',a:['눈빛이요.','말투요.','웃음소리요.']},
+ {id:'d8',q:'싸우면 먼저 사과하는 편이에요?',a:['제가 먼저 해요.','시간이 좀 필요해요.','잘 안 싸워요.']},
+ {id:'d9',q:'오늘 1차 어땠어요?',a:['솔직히 좀 긴장했어요.','너무 재밌었어요.','술게임은 제가 이긴 거 맞죠?']}];
+const ASKQ={id:'ask',q:'(동아리 가입을 권해 본다)',a:['진지하게: 우리 동아리에 들어와 줄래요?','장난스럽게: 가입 안 하면 복소사 벌칙이에요.','솔직하게: 다음에도 같이 마시고 싶어요.']};
+const DATE_LINES={good:['...그 말, 좀 설레네요.','(눈이 반짝였다.)','그런 사람 좋아해요.','(웃음을 참지 못했다.)'],mid:['아, 그렇구나.','음, 나쁘지 않네요.','(고개를 끄덕였다.)'],bad:['...아, 네.','(잠깐 정적이 흘렀다.)','그건 좀 의외네요.']};
+const resWord=r=>r>0?'좋아했다':r<0?'별로였다':'무난했다';
+function datePref(id,key){const best=hsh(id+'#'+key)%3;return{best,bad:(best+1)%3}}
+function dateStart(id){
+  const d=G.dist[id]??10,diff=G.drinks[id]-G.drinks.me,ch=Math.max(-3,Math.min(3,G.charm[id]||0));
+  const parts=[['기본',30]];
+  const rec=d<0.01?25:d<=2?15:d<=4?8:0;parts.push(['1차 복소사 취향',rec]);
+  parts.push(['마신 양',Math.abs(diff)<=2?10:0]);
+  if(ch)parts.push(['1차 대화',ch*5]);
+  if(has('moai'))parts.push(['모 씨의 든든함',5]);
+  return{parts,total:Math.max(0,Math.min(100,parts.reduce((a,x)=>a+x[1],0)))};
+}
+function heartHTML(v){return `<div class="heart"><i id="hv" style="width:${v}%"></i><b style="left:${DATE_GOAL}%"></b></div><p class="hnum"><span id="hn">${v}</span> / 100 <small>(${DATE_GOAL} 이상이면 가입)</small></p>`}
+function date2(id){
+  const st=dateStart(id);
+  G.date={id,heart:st.total,step:0,qs:shuffle([...DATEQ]).slice(0,3),allGood:true};
+  const o=byId(id);
+  screen(`<div class="center">${avHTML(o.av,'big')}<div class="seal">2차</div>
+<p class="big-msg">${josa(o.name,'과','와')} 단둘이</p>
+<p class="sub">1차가 가벼운 술게임이었다면, 2차는 진짜 대화다. 마음을 얻으면 동아리에 들어온다.</p></div>
+${heartHTML(st.total)}
+<div class="ach" style="margin:10px 0 16px">${st.parts.map(([n,v])=>`<div class="prow"><span>${n}</span><b>${v>0?'+':''}${v}</b></div>`).join('')}</div>
+<button class="btn" onclick="datePlace()">어디로 갈까?</button>`);
+}
+function pastTag(key,i){const r=((S.dates[G.date.id]||{})[key]);return r&&r.a===i?`<br><small>지난번: ${resWord(r.res)}</small>`:''}
+function datePlace(){
+  screen(`<h2 class="h">2차 장소</h2><p class="sub">${josa(nameOf(G.date.id),'과','와')} 어디로 갈까?</p>
+${heartHTML(G.date.heart)}
+<div class="choices" style="grid-template-columns:1fr 1fr">${DATE_PLACES.map((p,i)=>`<button class="pick" onclick="dateChoose('place',${i})"><span style="font-size:30px">${p.av}</span><b>${p.name}</b>${pastTag('place',i)}</button>`).join('')}</div>`)}
+function dateScene(){
+  const q=G.date.qs[G.date.step];
+  screen(`<h2 class="h">${['조금 가까워졌다','이야기가 깊어진다','마지막 질문'][G.date.step]}</h2>
+${heartHTML(G.date.heart)}
+${talk(G.date.id,q.q)}
+<div class="stack" style="margin-top:12px">${q.a.map((a,i)=>`<button class="btn ghost" onclick="dateChoose('${q.id}',${i})">${a}${pastTag(q.id,i)}</button>`).join('')}</div>`)}
+function dateAsk(){
+  screen(`<h2 class="h">밤이 깊었다</h2>
+${heartHTML(G.date.heart)}
+<p class="sub">이제 말할 때다. 어떻게 권해 볼까?</p>
+<div class="stack">${ASKQ.a.map((a,i)=>`<button class="btn ghost" onclick="dateChoose('ask',${i})">${a}${pastTag('ask',i)}</button>`).join('')}</div>`)}
+function dateChoose(key,i){
+  const id=G.date.id,{best,bad}=datePref(id,key);const res=i===best?1:i===bad?-1:0;
+  const big=key==='place'||key==='ask';const dv=res>0?12:res<0?-8:(big?4:3);
+  const before=G.date.heart;G.date.heart=Math.max(0,Math.min(100,before+dv));if(res<=0)G.date.allGood=false;
+  (S.dates[id]=S.dates[id]||{})[key]={a:i,res};save();
+  const mine=key==='place'?DATE_PLACES[i].name+'(으)로 갔다.':'나: '+(key==='ask'?ASKQ:DATEQ.find(x=>x.id===key)).a[i];
+  const next=key==='ask'?'dateEnd()':key==='place'?'dateScene()':(++G.date.step<3?'dateScene()':'dateAsk()');
+  screen(`<p class="big-msg">${res>0?'분위기가 좋아졌다':res<0?'분위기가 식었다':'무난하게 흘러갔다'}</p>
+<p class="sub">${mine}</p>
+${talk(id,pick(DATE_LINES[res>0?'good':res<0?'bad':'mid']))}
+${heartHTML(before)}
+<p class="center" style="font-family:'Black Han Sans',sans-serif;font-size:22px;color:${dv>0?'var(--bok)':'var(--muted)'}">${dv>0?'💗 +':'💔 '}${dv}</p>
+<div class="late" style="--d:1s"><button class="btn" onclick="${next}">${key==='ask'?'대답을 기다린다':'계속'}</button></div>`);
+  later(350,()=>{const hv=$('#hv');if(hv)hv.style.width=G.date.heart+'%';const hn=$('#hn');if(hn)hn.textContent=G.date.heart});
+}
+function dateEnd(){
+  const {id,heart,allGood}=G.date;const ok=heart>=DATE_GOAL;
+  if(ok&&allGood)unlock('soulmate');
+  screen(`<div class="center">${avHTML(byId(id).av,'big')}<p class="big-msg">${heart>=100?'심장이 터질 것 같다...':'두근두근...'}</p></div>${heartHTML(heart)}`);
+  later(1500,()=>{if(heart>=100)nightStart(id);else if(ok)result(id,true);else playScenes(rejectScenes(id),()=>result(id,false))});
+}
+
+/* ================= 6. 결과 ================= */
+function endButtons(reward){S.plays++;save();const gap=S.plays-(S.lastBackup||0);return `<p class="sub center">${reward}</p>${gap>=3?`<div class="ach nudge">💾 마지막 백업 후 ${gap}판을 했다. 기록이 날아가기 전에 백업해 두자.<button class="btn ghost" style="margin-top:8px;font-size:15px;padding:8px" onclick="openBackup()">지금 백업하기</button></div>`:''}<div class="stack" style="margin-top:8px"><button class="btn" onclick="recruit()">다시 모집하기</button><button class="btn ghost" onclick="dex()">도감 보기</button></div>`}
+function result(id,ok,love){
+  const o=byId(id);
+  if(love){
+    S.opp[id]='member';addCoins(50);unlock('first_member');unlock('first_love');if(OPP.filter(x=>x.cat===o.cat).every(x=>S.opp[x.id]==='member'))unlock('cat_'+o.cat);if(memberCount()>=OPP.length)unlock('full_house');
+    const btns=endButtons('+50코인');S.love[id]={stage:0,last:S.plays};save();
+    screen(`<div class="center">${avHTML(o.av,'big')}<div class="seal">동아리원 + 연인</div><p class="big-msg">${josa(o.name,'과','와')} 연인이 됐다</p><p class="sub">${o.profile}</p></div>
+${talk(id,love==='slow'?'천천히 알아가요. 우리.':'앞으로 잘 부탁해요.')}
+<p class="sub">다음 미팅을 한 판 끝낼 때마다, 도감이나 홈 화면에서 연인을 만나러 갈 수 있다.</p>
+${btns}`);
+    burst(['💞','💗','🍒','✨','💕'],48);return;
+  }
+  if(ok){
+    S.opp[id]='member';addCoins(30);unlock('first_member');if(OPP.filter(x=>x.cat===o.cat).every(x=>S.opp[x.id]==='member'))unlock('cat_'+o.cat);if(memberCount()>=OPP.length)unlock('full_house');save();
+    screen(`<div class="center">${avHTML(o.av,'big')}<div class="seal">동아리원 등록</div><p class="big-msg">${josa(o.name,'이','가')} 동아리에 들어왔다</p><p class="sub">${o.profile}</p></div>
+${talk(id,'오늘 재밌었어요. 다음 MT 때 봐요.')}
+<p class="sub">함께 하루를 보냈다. 같이 나왔던 다른 상대들은 도감에 실루엣으로 남았다.</p>
+${endButtons('+30코인')}`);
+    burst(['💗','🍒','🍶','✨','💕'],34);
+  }else{
+    addCoins(10);save();
+    screen(`<div class="center">${avHTML(o.av,'big')}<p class="big-msg">${josa(o.name,'은','는')} 웃으며 택시를 탔다</p><p class="sub">"오늘 즐거웠어요. 동아리는... 좀 더 생각해 볼게요." 2차에서 한 대답은 도감에 기록됐다. 다음 미팅에서 다시 만날 수 있다.</p></div>${endButtons('+10코인')}`);
+  }
+}
+
+/* ================= 컷씬 ================= */
+let SC=null;
+function playScenes(list,onEnd){SC={list,i:0,onEnd};showScene()}
+function showScene(){const p=SC.list[SC.i];screen(`
+<div class="pro" onclick="sceneTap()">
+  <div class="pro-av">${p.av}</div>
+  <p class="pro-t" id="pt"></p>
+  <div class="pro-dots">${SC.list.map((_,i)=>`<i class="${i<=SC.i?'on':''}"></i>`).join('')}</div>
+  <p class="pro-hint">화면을 탭하면 넘어간다</p>
+</div>
+<div class="center"><button class="link" onclick="sceneSkip()">건너뛰기</button></div>`);
+  const el=$('#pt');let i=0;MG={full:p.t,typing:true};
+  const iv=setInterval(()=>{i++;el.innerText=p.t.slice(0,i);if(i>=p.t.length){clearInterval(iv);MG.typing=false}},40);timers.push(iv);MG.iv=iv}
+function sceneTap(){if(MG.typing){clearInterval(MG.iv);$('#pt').innerText=MG.full;MG.typing=false;return}SC.i++;if(SC.i>=SC.list.length)sceneSkip();else showScene()}
+function sceneSkip(){if(!SC)return;const f=SC.onEnd;SC=null;f()}
+let CH=[];
+function choiceScreen(id,title,text,opts){CH=opts.map(o=>o[1]);const o=byId(id);screen(`
+<div class="pro" style="min-height:40vh;cursor:default">
+  <div class="pro-av">${o.av}</div>
+  <p class="big-msg" style="color:#FFF6D8;margin:0 0 6px">${title}</p>
+  <p class="pro-t" style="min-height:0">${text}</p>
+</div>
+<div class="stack" style="margin-top:14px">${opts.map((x,i)=>`<button class="btn ${i?'ghost':''}" onclick="CH[${i}]()">${x[0]}</button>`).join('')}</div>`)}
+
+/* ================= 연애 ================= */
+const LOVE_NAME=['연인','첫 여행을 다녀온 연인','부부','가족 계획 중인 부부','가족'];
+const isHuman=id=>byId(id).cat==='human';
+const eun=n=>josa(n,'은','는'),iga=n=>josa(n,'이','가'),wa=n=>josa(n,'과','와');
+function nightStart(id){
+  const o=byId(id),n=o.name;
+  if(!isHuman(id)){playScenes([
+    {av:'🌙',t:'2차가 끝나고도 둘 다 자리를 뜨지 못했다.'},
+    {av:o.av,t:`${wa(n)} 나란히 앉아 밤하늘을 올려다봤다.\n말은 없었지만 이상하게 편안했다.`},
+    {av:'✨',t:`"${o.lines[0]}"\n처음 만났을 때 했던 말이 오늘따라 다르게 들렸다.`},
+    {av:'🌅',t:'어느새 해가 떠올랐다. 우리는 밤새 이야기를 나눴다.'},
+    {av:'💞',t:`종족도, 모양도 달랐지만 상관없었다.\n그날부터 ${eun(n)} 나의 연인이 됐다.`}],()=>result(id,true,'night'));return}
+  playScenes([
+    {av:'🌙',t:`2차가 끝나고도 둘 다 쉽게 일어나지 못했다.\n${iga(n)} 먼저 말했다. "조금만 더 걸을래요?"`},
+    {av:'🚶',t:'골목 끝 가로등 아래, 손등이 몇 번 스쳤다.\n세 번째에 그녀가 내 손을 꼭 잡았다.'},
+    {av:o.av,t:'"오늘 처음 만났는데, 이상하게 오래 알던 사람 같아요."\n입술에 복소사 향이 아직 남아 있었다.'},
+    {av:'🏠',t:`어느새 ${n}의 집 앞이었다.\n그녀가 문고리를 잡은 채 작게 말했다. "...그냥 보내기 싫은데."`}
+  ],()=>choiceScreen(id,'어떻게 할까?',`${iga(n)} 대답을 기다리고 있다.`,[
+    ['함께 들어간다',()=>playScenes([
+      {av:'🚪',t:'문이 조용히 닫혔다.\n현관 불빛 아래에서 서로를 한참 바라봤다.'},
+      {av:'🕯️',t:'"긴장했어요?" "...조금요."\n둘 다 웃음이 터졌고, 그 웃음 끝에 그녀가 먼저 다가왔다.'},
+      {av:'🌑',t:'방 안의 불이 꺼졌다.'},
+      {av:'🌅',t:`다음 날 아침, 커튼 사이로 햇살이 들어왔다.\n${iga(n)} 잠이 덜 깬 목소리로 웃었다. "좋은 아침."`},
+      {av:'💞',t:`그날부터 ${eun(n)} 동아리원이자, 나의 연인이 됐다.`}],()=>result(id,true,'night'))],
+    ['오늘은 인사하고 돌아선다',()=>playScenes([
+      {av:'🙇',t:'"오늘은 여기까지 할게요. 소중하게 하고 싶어서요."\n그녀가 놀란 듯 눈을 크게 떴다가, 천천히 웃었다.'},
+      {av:'📱',t:`돌아가는 길, 휴대폰이 울렸다.\n"그 말, 좀 반칙이에요. 조심히 들어가요. - ${n}"`},
+      {av:'💞',t:`그날부터 ${eun(n)} 동아리원이자, 나의 연인이 됐다.`}],()=>result(id,true,'slow'))]]));
+}
+function rejectScenes(id){const o=byId(id),n=o.name;return[
+  {av:o.av,t:`${iga(n)} 잠시 망설이다 입을 열었다.\n${pick(['"오늘 정말 즐거웠어요. 그런데... 아직은 잘 모르겠어요."','"좋은 사람인 건 알겠어요. 근데 동아리는 조금 더 생각해 볼게요."','"미안해요. 오늘은 여기까지만 할래요."'])}`},
+  {av:'🚕',t:`${eun(n)} 웃으며 택시에 올랐다.\n창문 너머로 작게 손을 흔들었다.`},
+  {av:'🌃',t:'혼자 남은 골목. 거절은 아팠지만, 오늘 나눈 대화는 남았다.\n다음엔 더 잘할 수 있을 것 같다.'}]}
+const loveReady=id=>{const L=S.love[id];return !!L&&L.stage<4&&S.plays>L.last};
+const loveIds=()=>Object.keys(S.love||{});
+function loveDone(id,msg){screen(`<div class="center">${avHTML(byId(id).av,'big')}<div class="seal">${LOVE_NAME[S.love[id].stage]}</div><p class="big-msg">${msg}</p><p class="sub">다음 미팅을 한 판 끝내면 다시 만날 수 있다.</p></div>
+<div class="stack"><button class="btn" onclick="recruit()">미팅 하러 가기</button><button class="btn ghost" onclick="loveList()">연인 목록</button></div>`)}
+function loveVisit(id){
+  closeModal();const L=S.love[id],o=byId(id),n=o.name,h=isHuman(id);
+  const step=(st,msg)=>()=>{L.stage=st;L.last=S.plays;save();loveDone(id,msg)};
+  const hold=msg=>()=>{L.last=S.plays;save();loveDone(id,msg)};
+  if(L.stage===0)playScenes([
+    {av:'🧳',t:`${wa(n)} 첫 여행을 떠났다.\n목적지는 바다. 계획은 대충, 설렘은 가득.`},
+    {av:'🛣️',t:h?'휴게소에서 호두과자를 나눠 먹다가, 마지막 하나를 두고 가위바위보를 했다.\n졌지만 반을 나눠 받았다.':'휴게소 사람들이 우리를 신기하게 쳐다봤다.\n신경 쓰지 않았다. 둘이면 충분했으니까.'},
+    {av:'🌊',t:'파도 소리를 들으며 복소사를 말았다.\n이번엔 레시피를 외우고 있었다.'},
+    {av:o.av,t:`"다음엔 어디 갈래요?"\n${iga(n)} 벌써 다음 여행 얘기를 꺼냈다.`}],step(1,'첫 여행을 다녀왔다'));
+  else if(L.stage===1)choiceScreen(id,'반지를 샀다',`${wa(n)} 함께한 지 꽤 됐다.\n주머니 속 작은 상자가 자꾸 신경 쓰인다.`,[
+    ['청혼한다',()=>playScenes([
+      {av:'💍',t:`처음 만났던 그 포차, 그 자리.\n복소사 잔 옆에 반지 상자를 올려놓았다.`},
+      {av:o.av,t:h?`${iga(n)} 한참 말없이 반지를 보다가, 울면서 웃었다.\n"...이걸 여기서 하면 어떡해요. 네, 좋아요."`:`${iga(n)} 잠시 멈췄다가, ${n}답게 대답했다.\n"${o.drink.replace(/^["(]|[")]$/g,'')}" ...아마 좋다는 뜻이다.`},
+      {av:'💒',t:'작은 결혼식. 하객석엔 동아리원들이 앉아 있었다.\n주례는 최 병장이 맡았다. "전역보다 기쁜 날이다."'},
+      {av:'🥂',t:'건배주는 당연히 복소사. 둘만의 레시피로.\n"평생 같이 마셔요."'}],()=>{unlock('wedding');step(2,'부부가 됐다')()})],
+    ['아직은 이르다',hold('반지는 서랍에 넣어뒀다. 다음에 다시 용기를 내자.')]]);
+  else if(L.stage===2)choiceScreen(id,'신혼 생활',h?`${iga(n)} 소파에 기대 물었다.\n"우리... 아이 이름 생각해 본 적 있어요?"`:`${wa(n)} 사는 집이 조금 넓게 느껴지는 요즘이다.\n식구를 늘려볼까?`,[
+    [h?'아이를 계획한다':'입양을 알아본다',()=>playScenes(h?[
+      {av:'📝',t:'둘이 이름 후보를 공책에 적다가 한참 웃었다.\n"복순이는 안 돼요." "왜요, 귀엽잖아요."'},
+      {av:'🏥',t:'병원 상담도 받고, 생활 패턴도 바꿨다.\n복소사는 당분간 사이다만.'},
+      {av:'🤞',t:'"천천히 가요. 우리 속도대로."\n그녀가 내 손을 꼭 잡았다.'}]:[
+      {av:'🏡',t:'주말마다 보호소를 찾아가 봉사를 했다.'},
+      {av:o.av,t:`"저 아이, 계속 우리만 보고 있어요."\n${iga(n)} 한 곳을 가리켰다.`}],step(3,h?'가족 계획을 시작했다':'입양 신청을 했다'))],
+    ['둘만의 시간을 더 갖는다',hold('아직은 둘이서 충분히 행복하다.')]]);
+  else if(L.stage===3)playScenes(h?[
+    {av:'🌅',t:'그날 새벽, 병원 복도가 유난히 길게 느껴졌다.'},
+    {av:'👶',t:'작은 손이 내 손가락을 꼭 쥐었다.\n그녀가 지친 얼굴로 웃었다. "당신 닮았어요."'},
+    {av:'📸',t:'가족사진 속 우리는 셋이 됐다.\n아이의 첫 돌상엔 복분자 주스가 올라갈 예정이다.'}]:[
+    {av:'🐶',t:'보호소에서 데려온 작은 강아지.\n이름은 둘이 합의해서 "복소"로 지었다.'},
+    {av:o.av,t:`${iga(n)} 복소를 바라보며 말했다.\n"이제 진짜 가족 같네요."`},
+    {av:'📸',t:'가족사진 속 우리는 셋이 됐다.'}],()=>{unlock('family');step(4,'가족이 됐다')()});
+}
+function loveList(){const ids=loveIds();screen(`<h2 class="h">연인</h2><p class="sub">미팅을 한 판 끝낼 때마다 연인을 만나러 갈 수 있다.</p>
+${ids.length?`<div class="party">${ids.map(id=>{const o=byId(id),L=S.love[id];return `<div class="card">${avHTML(o.av)}<div><b>${o.name}</b> <span class="k">${LOVE_NAME[L.stage]}</span>
+${loveReady(id)?`<div style="margin-top:6px"><button class="btn" style="font-size:15px;padding:8px" onclick="loveVisit('${id}')">만나러 가기</button></div>`:`<div class="k">${L.stage>=4?'행복하게 지내고 있다.':'다음 미팅을 끝내면 만날 수 있다.'}</div>`}</div></div>`}).join('')}</div>`:'<p class="sub">아직 연인이 없다. 2차에서 호감 100을 채워보자.</p>'}
+<div style="height:14px"></div><button class="btn ghost" onclick="home()">처음으로</button>`)}
+
+/* ================= 도감 ================= */
+function dex(){
+  const tabs=[['members','동아리원',`${memberCount()}/${OPP.length}`],['comp','동료',`${COMP.filter(c=>S.comp[c.id]).length}/${COMP.length}`],['rec','레시피',`${OPP.filter(o=>S.rec[o.id]).length}/${OPP.length}`],['place','장소',`${PLACES.filter(p=>S.place[p.id]).length}/${PLACES.length}`],['ach','업적',`${ACH.filter(a=>S.ach[a.id]).length}/${ACH.length}`]];
+  let body='';
+  const inCat=OPP.filter(o=>o.cat===dexCat);
+  const chips=f=>`<div class="tabs cats">${CATS.map(([k,n])=>{const a=OPP.filter(o=>o.cat===k);return `<button class="tab ${dexCat===k?'on':''}" onclick="dexCat='${k}';dex()">${n} <small>${a.filter(f).length}/${a.length}</small></button>`}).join('')}</div>`;
+  if(dexTab==='members'){
+    body=chips(o=>S.opp[o.id]==='member')+`<div class="grid">${inCat.map(o=>{const st=S.opp[o.id];
+      const star=(o.rare||o.cond)?'<span class="hint">★</span>':'';
+      if(st==='member')return `<button class="cell" onclick="detail('${o.id}')">${avHTML(o.av)}<b>${o.name}</b>${star}</button>`;
+      if(st==='seen')return `<button class="cell" onclick="detail('${o.id}')">${avHTML(o.av,'',true)}<b>???</b><span class="hint">만난 적 있음</span>${star}</button>`;
+      return `<div class="cell"><span class="q">?</span><b>???</b>${o.hint?`<span class="hint">${o.hint}</span>`:''}</div>`}).join('')}</div>`;
+  }else if(dexTab==='comp'){
+    body=`<div class="party">${COMP.map(c=>S.comp[c.id]?compInner(c):`<div class="card">${avHTML(c.av,'',true)}<div><b>???</b><div class="k">아직 함께한 적 없는 동료</div></div></div>`).join('')}</div>`;
+  }else if(dexTab==='rec'){
+    body=chips(o=>S.rec[o.id])+`<div class="list">${inCat.map(o=>{const known=S.opp[o.id]==='member';
+      return `<div class="ach ${S.rec[o.id]?'':'off'}"><div style="display:flex;gap:10px;align-items:center">${S.opp[o.id]?avHTML(o.av,'sm',!known):'<span class="av sm">?</span>'}<b>${known?o.name:'???'}의 복소사</b></div>${S.rec[o.id]?recBar(o.r)+`<small>복분자 ${o.r[0]} : 소주 ${o.r[1]} : 사이다 ${o.r[2]}</small>`:'<small>정확한 비율로 섞으면 발견된다.</small>'}</div>`}).join('')}</div>`;
+  }else if(dexTab==='place'){
+    body=`<div class="party">${PLACES.map(p=>S.place[p.id]?`<div class="card">${avHTML(p.av)}<div><b>${p.name}</b><div class="k">${p.desc}</div><div class="perk">${p.boost?CATNAME[p.boost]+' 손님이 자주 온다':'손님이 고르게 온다'}</div></div></div>`:`<div class="card">${avHTML(p.av,'',true)}<div><b>???</b></div></div>`).join('')}</div><p class="sub" style="margin-top:12px">새 장소는 업데이트로 추가된다.</p>`;
+  }else{
+    body=`<div class="list">${ACH.map(a=>{const on=S.ach[a.id];const show=on||!a.hidden;return `<div class="ach ${on?'':'off'}"><b>${show?a.name:'숨겨진 업적'}</b><small>${show?a.desc:'조건을 찾아보자.'}</small></div>`}).join('')}</div>`;
+  }
+  screen(`<h2 class="h">도감</h2><p class="sub">플레이 ${S.plays}회</p>
+<div class="tabs" role="tablist">${tabs.map(([k,n,c])=>`<button class="tab ${dexTab===k?'on':''}" role="tab" aria-selected="${dexTab===k}" onclick="dexTab='${k}';dex()">${n} <small>${c}</small></button>`).join('')}</div>
+${body}
+<div style="height:20px"></div>
+<button class="btn" onclick="home()">처음으로</button>
+<div class="center" style="margin-top:20px"><button class="link" onclick="openBackup()">기록 백업 / 불러오기</button><br><button class="link" onclick="resetSave()">${resetArm?'한 번 더 누르면 모든 기록이 지워진다':'기록 초기화'}</button></div>`);
+}
+function detail(id){
+  const o=byId(id);const m=S.opp[id]==='member';
+  $('#modal').innerHTML=`<div class="sheet"><div class="center">${avHTML(o.av,'big',!m)}<p class="big-msg">${m?o.name:'???'}</p><p class="sub">${m?o.kind+' ('+CATNAME[o.cat]+')':'실루엣만 기억난다. ('+CATNAME[o.cat]+')'}</p></div>
+${m&&S.love[id]?`<div class="ach center" style="margin-bottom:10px">💞 <b style="display:inline">${LOVE_NAME[S.love[id].stage]}</b>${loveReady(id)?`<div style="margin-top:8px"><button class="btn" style="font-size:15px;padding:8px" onclick="loveVisit('${id}')">만나러 가기</button></div>`:''}</div>`:''}
+${m?`<p>${o.profile}</p><div class="label">좋아하는 복소사</div>${S.rec[id]?recBar(o.r)+`<small>복분자 ${o.r[0]} : 소주 ${o.r[1]} : 사이다 ${o.r[2]}</small>`:'<small>아직 모른다. 미팅에서 비율을 맞혀보자.</small>'}
+<div class="label">한마디</div>${o.lines.map(l=>`<p>"${l}"</p>`).join('')}`:`<p class="sub">유혹에 성공하면 정보가 공개된다.${o.hint?'<br>'+o.hint:''}</p>`}
+<div class="label">레시피 노트</div>${hintHTML(id)}${noteHTML(id,5)}
+<div class="label">2차 기록</div>${(()=>{const dd=Object.entries(S.dates[id]||{});return dd.length?dd.map(([k,r])=>{const q=k==='place'?{q:'2차 장소',a:DATE_PLACES.map(p=>p.name)}:k==='ask'?ASKQ:DATEQ.find(x=>x.id===k);return `<p><small class="k">${q.q}</small><br>${q.a[r.a]} <small>(${resWord(r.res)})</small></p>`}).join(''):'<small class="k">아직 2차를 가 본 적이 없다.</small>'})()}
+<div class="label">1차 대화 기록</div>${(()=>{const tk=Object.entries(S.talks[id]||{});return tk.length?tk.map(([qid,r])=>{const q=TALKQ.find(x=>x.id===qid);return `<p><small class="k">${q.q}</small><br>${q.a[r.a]} <small>(${r.res>0?'좋아했다':r.res<0?'별로였다':'무난했다'})</small></p>`}).join(''):'<small class="k">아직 나눈 대화가 없다.</small>'})()}
+<div style="height:16px"></div><button class="btn ghost" onclick="closeModal()">닫기</button></div>`;
+  $('#modal').hidden=false;
+}
+function closeModal(){$('#modal').hidden=true}
+/* ---------- 백업 코드 ---------- */
+let imArm=false;
+const backupCode=()=>'BSS1.'+btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+function openBackup(){imArm=false;const code=backupCode();
+  $('#modal').innerHTML=`<div class="sheet"><p class="big-msg" style="margin-top:0">기록 백업</p>
+<p class="sub">아래 코드를 복사해 메모장이나 메시지에 보관해 두자. 다른 기기에서 붙여넣으면 도감이 그대로 돌아온다.</p>
+<textarea id="bk" class="code" readonly>${code}</textarea>
+<div class="row" style="margin:0 0 6px"><button class="btn" onclick="copyCode()">코드 복사</button><button class="btn ghost" onclick="saveFile()">파일로 저장</button></div>
+<div class="label">불러오기</div>
+<textarea id="im" class="code" placeholder="백업 코드를 붙여넣기"></textarea>
+<label class="btn ghost filebtn">백업 파일 선택<input type="file" accept=".txt,text/plain" onchange="loadFile(this)" hidden></label>
+<button class="btn ghost" id="imb" onclick="importCode()">불러오기</button>
+<div style="height:12px"></div><button class="btn ghost" onclick="closeModal()">닫기</button></div>`;
+  $('#modal').hidden=false}
+function copyCode(){const t=$('#bk');t.select();const ok=()=>{S.lastBackup=S.plays;save();toast('코드를 복사했다.')};
+  const fb=()=>{try{document.execCommand('copy');ok()}catch(e){toast('코드를 길게 눌러 직접 복사하자.')}};
+  if(navigator.clipboard)navigator.clipboard.writeText(t.value).then(ok,fb);else fb()}
+async function saveFile(){let d=null;try{d=window.claude&&await window.claude.use('downloads')}catch(e){}
+  if(!d){try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backupCode()],{type:'text/plain'}));a.download=`boksosa_backup_${S.plays}.txt`;document.body.appendChild(a);a.click();a.remove();S.lastBackup=S.plays;save();toast('백업 파일을 저장했다.')}catch(e){toast('파일 저장에 실패했다. 코드 복사를 이용하자.')}return}
+  try{await d.save({filename:`boksosa_backup_${S.plays}.txt`,data:backupCode()});S.lastBackup=S.plays;save();toast('백업 파일을 저장했다.')}
+  catch(e){if(e&&e.code==='declined')return;toast('저장하지 못했다. 코드 복사를 이용하자.')}}
+function loadFile(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#im').value=String(r.result).trim();toast('파일을 읽었다. 불러오기를 눌러 적용하자.')};r.readAsText(f)}
+function importCode(){const v=$('#im').value.trim();let o;
+  try{if(!v.startsWith('BSS1.'))throw 0;o=JSON.parse(decodeURIComponent(escape(atob(v.slice(5)))));if(!o||typeof o!=='object'||!o.opp)throw 0}catch(e){toast('올바른 백업 코드가 아니다.');return}
+  if(!imArm){imArm=true;$('#imb').textContent='한 번 더 누르면 지금 기록을 덮어쓴다';return}
+  S=Object.assign(blank(),o);save();closeModal();toast('기록을 불러왔다.');home()}
+function resetSave(){if(!resetArm){resetArm=true;dex();later(4000,()=>{resetArm=false});return}resetArm=false;S=blank();save();toast('기록을 초기화했다.');home()}
+
+home();
+</script>
+<script type="module">
+/* ============ Firebase 설정: 가이드 3단계에서 복사한 값으로 바꾸기 ============ */
+const firebaseConfig = {
+  apiKey: "여기에_apiKey",
+  authDomain: "여기에_authDomain",
+  projectId: "여기에_projectId",
+  storageBucket: "여기에_storageBucket",
+  messagingSenderId: "여기에_messagingSenderId",
+  appId: "여기에_appId"
+};
+/* ========================================================================== */
+const C = window.CLOUD = {off:false, ready:false, user:null, status:''};
+const rerender = () => { if (window.ON_HOME) home(); };
+if (firebaseConfig.apiKey.startsWith("여기에")) {
+  C.off = true; rerender();
+} else {
+  const V = "10.12.2", base = `https://www.gstatic.com/firebasejs/${V}/`;
+  const [{initializeApp}, A, F] = await Promise.all([
+    import(base+"firebase-app.js"), import(base+"firebase-auth.js"), import(base+"firebase-firestore.js")]);
+  const app = initializeApp(firebaseConfig);
+  const auth = A.getAuth(app), db = F.getFirestore(app);
+  let timer = null, busy = false;
+  const ref = () => F.doc(db, "users", C.user.uid);
+  const sizeOf = o => (o.plays||0) + Object.values(o.opp||{}).filter(v=>v==='member').length*10;
+
+  C.push = () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      if (!C.user || busy) return;
+      try {
+        await F.setDoc(ref(), {save: JSON.stringify(S), plays: S.plays||0, updatedAt: F.serverTimestamp()});
+        C.status = '방금 저장됨';
+      } catch (e) { C.status = '저장 실패. 인터넷 연결을 확인하자.'; }
+    }, 1500);
+  };
+  C.login = async () => {
+    const p = new A.GoogleAuthProvider();
+    try { await A.signInWithPopup(auth, p); }
+    catch (e) {
+      if (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment') await A.signInWithRedirect(auth, p);
+      else if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') toast('로그인에 실패했다. 크롬이나 사파리에서 다시 시도하자.');
+    }
+  };
+  C.logout = async () => { await A.signOut(auth); toast('로그아웃했다. 기록은 이 기기에 남아 있다.'); };
+  C.useCloud = cloud => { S = Object.assign(blank(), cloud); try{localStorage.setItem(KEY, JSON.stringify(S))}catch(e){}; closeModal(); toast('클라우드 기록을 불러왔다.'); home(); };
+  C.useLocal = () => { closeModal(); C.push(); toast('이 기기 기록으로 클라우드를 덮어썼다.'); rerender(); };
+
+  A.getRedirectResult(auth).catch(()=>{});
+  A.onAuthStateChanged(auth, async user => {
+    C.user = user; C.ready = true; C.status = '';
+    if (!user) { rerender(); return; }
+    busy = true;
+    try {
+      const snap = await F.getDoc(ref());
+      if (!snap.exists()) {
+        busy = false; C.push(); toast('클라우드 저장을 시작했다.');
+      } else {
+        const cloud = JSON.parse(snap.data().save);
+        const localEmpty = sizeOf(S) === 0;
+        busy = false;
+        if (localEmpty || JSON.stringify(cloud) === JSON.stringify(S)) { C.useCloud(cloud); return; }
+        C.pending = cloud;
+        const m = o => OPP.filter(x => (o.opp||{})[x.id]==='member').length;
+        $('#modal').innerHTML = `<div class="sheet"><p class="big-msg" style="margin-top:0">어느 기록을 쓸까?</p>
+<p class="sub">이 기기와 클라우드에 서로 다른 기록이 있다. 고르지 않은 쪽은 지워진다.</p>
+<button class="btn" onclick="CLOUD.useCloud(CLOUD.pending)">클라우드 기록<br><small>${cloud.plays||0}판, 동아리원 ${m(cloud)}명</small></button>
+<div style="height:8px"></div>
+<button class="btn ghost" onclick="CLOUD.useLocal()">이 기기 기록<br><small>${S.plays||0}판, 동아리원 ${m(S)}명</small></button></div>`;
+        $('#modal').hidden = false;
+      }
+    } catch (e) { busy = false; C.status = '클라우드 연결 실패. 이 기기에는 계속 저장된다.'; }
+    rerender();
+  });
+}
+</script>
+</body>
+</html>
